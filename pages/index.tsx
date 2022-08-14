@@ -1,8 +1,8 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const [offsetY, setOffsetY] = useState(0);
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
       </div>
     </>
   );
-  
+
   return (
     <>
       <section className={styles.parallax}>
@@ -35,22 +35,20 @@ const Home: NextPage = () => {
           className={styles.parallaxBackground}
           style={{ transform: `translateY(-${offsetY * 0.5}px)` }}
         />
-        
+
         <div
           className={styles.parallaxObject}
           style={{ transform: `translateY(${offsetY * 0.3}px)` }}
         >
-          <Image src={require('../public/header-object.svg')} alt=""/>
+          <Image src={require("../public/header-object.svg")} alt="" />
         </div>
         <div className={styles.content}>{renderContent()}</div>
       </section>
       <section className={styles.parallax}>
-        <div
-          className={styles.parallaxBackground}
-        />
+        <div className={styles.parallaxBackground} />
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
