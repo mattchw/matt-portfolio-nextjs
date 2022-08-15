@@ -13,10 +13,6 @@ const Home: NextPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    console.log(offsetY);
-  }, [offsetY]);
-
   const renderContent = () => (
     <>
       <div className={styles.heading}>
