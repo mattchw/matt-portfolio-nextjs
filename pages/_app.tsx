@@ -1,6 +1,8 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
+import { ParallaxProvider } from "react-scroll-parallax";
+import "../styles/globals.css";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -21,22 +23,11 @@ export default function App(props: AppProps) {
         theme={{
           /** Put your mantine theme override here */
           colorScheme: "dark",
-          components: {
-            Container: {
-              defaultProps: {
-                sizes: {
-                  xs: 540,
-                  sm: 720,
-                  md: 960,
-                  lg: 1140,
-                  xl: 1320,
-                },
-              },
-            },
-          },
         }}
       >
-        <Component {...pageProps} />
+        <ParallaxProvider>
+          <Component {...pageProps} />
+        </ParallaxProvider>
       </MantineProvider>
     </>
   );
