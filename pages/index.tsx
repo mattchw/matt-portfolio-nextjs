@@ -1,4 +1,4 @@
-import { Center, Container, Title, Text, Divider } from "@mantine/core";
+import { Center, Grid, Title, Text, Divider, Container } from "@mantine/core";
 import { createGetInitialProps } from "@mantine/next";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -20,7 +20,7 @@ const Home: NextPage = () => {
 
   const headline: BannerLayer = {
     translateY: [0, 20],
-    scale: [1, 1.2, "easeOutCubic"],
+    scale: [1, 1.15, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
     expanded: false,
     children: (
@@ -34,6 +34,28 @@ const Home: NextPage = () => {
     ),
   };
 
+  const astronaut: BannerLayer = {
+    translateY: [0, 10],
+    scale: [1, 0.8, "easeOutCubic"],
+    shouldAlwaysCompleteAnimation: true,
+    children: (
+      <Grid justify="flex-end" style={{ height: "100%" }}>
+        <Grid.Col span={5}>
+          <Container
+            style={{ height: "100%", display: "flex", paddingBottom: "50%" }}
+          >
+            <Image
+              src="/header-object.svg"
+              alt="Astronaut"
+              width={250}
+              height={250}
+            />
+          </Container>
+        </Grid.Col>
+      </Grid>
+    ),
+  };
+
   const foreground: BannerLayer = {
     image: "banner-foreground.png",
     translateY: [0, 15],
@@ -41,18 +63,10 @@ const Home: NextPage = () => {
     shouldAlwaysCompleteAnimation: true,
   };
 
-  const gradientOverlay: BannerLayer = {
-    opacity: [0, 0.9],
-    shouldAlwaysCompleteAnimation: true,
-    expanded: false,
-    children: (
-      <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-blue-900" />
-    ),
-  };
   return (
     <>
       <ParallaxBanner
-        layers={[background, headline, foreground, gradientOverlay]}
+        layers={[background, astronaut, headline, foreground]}
         style={{
           height: "200vh",
           width: "100vw",
