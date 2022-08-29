@@ -8,6 +8,7 @@ import styles from "../styles/Home.module.css";
 import aboutStyles from "../styles/About.module.css";
 import { BannerLayer } from "react-scroll-parallax/dist/components/ParallaxBanner/types";
 import { ParallaxBanner } from "react-scroll-parallax";
+import About from "../components/About/About";
 
 const Home: NextPage = () => {
   const background: BannerLayer = {
@@ -63,6 +64,12 @@ const Home: NextPage = () => {
         style={{
           height: "200vh",
           width: "100vw",
+        }}
+      />
+      <About
+        data={{
+          title: "About",
+          description: "I'm a software engineer",
         }}
       />
     </>
