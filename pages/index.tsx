@@ -20,14 +20,14 @@ const Home: NextPage = () => {
 
   const headline: BannerLayer = {
     translateY: [0, 20],
-    scale: [1, 1.15, "easeOutCubic"],
+    scale: [1, 1.2, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
     expanded: false,
     children: (
       <Center className={styles.content}>
         <Title order={1}>{"Hi, I'm Matt Wong"}</Title>
         <Divider my="sm" />
-        <Text size="sm">
+        <Text size="md">
           I code and explore new technologies, and I love what I do.
         </Text>
       </Center>
@@ -40,7 +40,7 @@ const Home: NextPage = () => {
     shouldAlwaysCompleteAnimation: true,
     children: (
       <Grid justify="flex-end" style={{ height: "100%" }}>
-        <Grid.Col span={5}>
+        <Grid.Col span={4}>
           <Container
             style={{ height: "100%", display: "flex", paddingBottom: "50%" }}
           >
@@ -56,17 +56,10 @@ const Home: NextPage = () => {
     ),
   };
 
-  const foreground: BannerLayer = {
-    image: "banner-foreground.png",
-    translateY: [0, 15],
-    scale: [1, 1.1, "easeOutCubic"],
-    shouldAlwaysCompleteAnimation: true,
-  };
-
   return (
     <>
       <ParallaxBanner
-        layers={[background, astronaut, headline, foreground]}
+        layers={[background, astronaut, headline]}
         style={{
           height: "200vh",
           width: "100vw",
