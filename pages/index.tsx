@@ -70,6 +70,7 @@ const Home: NextPage = () => {
         data={{
           title: "About",
           description: "I'm a software engineer",
+          skills: ["React", "Next.js", "Node.js", "Express", "MongoDB"],
         }}
       />
     </>
