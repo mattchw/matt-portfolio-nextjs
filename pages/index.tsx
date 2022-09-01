@@ -9,6 +9,7 @@ import aboutStyles from "../styles/About.module.css";
 import { BannerLayer } from "react-scroll-parallax/dist/components/ParallaxBanner/types";
 import { ParallaxBanner } from "react-scroll-parallax";
 import About from "../components/About/About";
+import Resume from "../components/Resume/Resume";
 
 const Home: NextPage = () => {
   const background: BannerLayer = {
@@ -71,6 +72,20 @@ const Home: NextPage = () => {
           title: "About",
           description: "I'm a software engineer",
           skills: ["React", "Next.js", "Node.js", "Express", "MongoDB"],
+        }}
+      />
+      <Resume
+        data={{
+          work: [
+            "Software Engineer at Amazon",
+            "Software Engineer at Microsoft",
+            "Software Engineer at Google",
+          ],
+          education: [
+            "University of California, Berkeley",
+            "University of California, Berkeley",
+            "University of California, Berkeley",
+          ],
         }}
       />
     </>
