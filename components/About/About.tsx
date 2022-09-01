@@ -21,8 +21,8 @@ const About: React.FC<Props> = ({ data: { title, description, skills } }) => {
     ));
   };
   return (
-    <Container>
-      <Grid>
+    <Container className={styles.about}>
+      <Grid justify="center" align="center" className={styles.aboutContainer}>
         <Grid.Col span={5}>
           <div className={styles.aboutImgCircle}>
             <Image
@@ -40,6 +40,11 @@ const About: React.FC<Props> = ({ data: { title, description, skills } }) => {
           </Grid>
           <Grid>
             <Text size="sm">{description}</Text>
+          </Grid>
+          <Grid>
+            <h4 className="about-skills-text">
+              <span>Code Skills</span>
+            </h4>
           </Grid>
           <Grid>{renderSkills()}</Grid>
         </Grid.Col>
