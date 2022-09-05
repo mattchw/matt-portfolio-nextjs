@@ -121,7 +121,6 @@ const Home: NextPage = () => {
                 },
               ],
             },
-            ,
           ],
           education: [
             "University of California, Berkeley",
