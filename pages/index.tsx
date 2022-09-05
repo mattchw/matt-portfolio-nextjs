@@ -123,9 +123,16 @@ const Home: NextPage = () => {
             },
           ],
           education: [
-            "University of California, Berkeley",
-            "University of California, Berkeley",
-            "University of California, Berkeley",
+            {
+              school: "The Chinese University of Hong Kong",
+              degree: "B.Sc. in Computer Science",
+              startDate: "September 2015",
+              endDate: "July 2019",
+              description: [
+                "Specialized in cloud, networks, database, web and mobile applications development",
+                "Developed a set of 2 educational applications for assignment marking and grade analysis in final year project with Spring.io, Swift, React Native, Javascript",
+              ],
+            },
           ],
         }}
       />
