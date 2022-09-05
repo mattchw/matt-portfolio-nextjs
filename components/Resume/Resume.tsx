@@ -1,10 +1,18 @@
-import { Accordion, Container, Grid, Text } from "@mantine/core";
+import {
+  Accordion,
+  Container,
+  Grid,
+  Text,
+  List,
+  Timeline,
+} from "@mantine/core";
 import Image from "next/image";
+import Work from "../../interfaces/work";
 import styles from "./Resume.module.css";
 
 export interface Props {
   data: {
-    work: string[];
+    work: Work[];
     education: string[];
   };
 }
@@ -14,11 +22,27 @@ const Resume: React.FC<Props> = ({ data: { work, education } }) => {
     return (
       <Accordion variant="filled" defaultValue="work">
         {work.map((item, index) => (
-          <Accordion.Item key={index} value={item}>
-            <Accordion.Control>{item}</Accordion.Control>
+          <Accordion.Item key={index} value={item.company}>
+            <Accordion.Control>{item.company}</Accordion.Control>
             <Accordion.Panel>
-              Colors, fonts, shadows and many other parts are customizable to
-              fit your design needs
+              <Timeline
+                active={item.positions.length}
+                bulletSize={16}
+                lineWidth={2}
+              >
+                {item.positions.map((position, index) => (
+                  <Timeline.Item key={index} title={position.title}>
+                    <Text size="xs" mt={4}>
+                      {position.startDate} - {position.endDate}
+                    </Text>
+                    <List size="sm" withPadding>
+                      {position.description.map((description, index) => (
+                        <List.Item key={index}>{description}</List.Item>
+                      ))}
+                    </List>
+                  </Timeline.Item>
+                ))}
+              </Timeline>
             </Accordion.Panel>
           </Accordion.Item>
         ))}
