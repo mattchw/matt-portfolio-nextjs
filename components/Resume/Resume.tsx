@@ -79,7 +79,7 @@ const Resume: React.FC<Props> = ({ data: { work, education } }) => {
   };
   return (
     <Container className={styles.about}>
-      <Grid justify="center" align="center" className={styles.resumeContainer}>
+      <Grid justify="center" className={styles.resumeContainer}>
         <Grid.Col span={3}>
           <h3 className={styles.resumeLeftTitle}>
             <span>Work</span>
@@ -87,7 +87,7 @@ const Resume: React.FC<Props> = ({ data: { work, education } }) => {
         </Grid.Col>
         <Grid.Col span={9}>{renderWork()}</Grid.Col>
       </Grid>
-      <Grid justify="center" align="center" className={styles.resumeContainer}>
+      <Grid justify="center" className={styles.resumeContainer}>
         <Grid.Col span={3}>
           <h3 className={styles.resumeLeftTitle}>
             <span>Education</span>
