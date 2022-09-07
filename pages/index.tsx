@@ -10,6 +10,7 @@ import { BannerLayer } from "react-scroll-parallax/dist/components/ParallaxBanne
 import { ParallaxBanner } from "react-scroll-parallax";
 import About from "../components/About/About";
 import Resume from "../components/Resume/Resume";
+import Project from "../components/Project/Project";
 
 const Home: NextPage = () => {
   const background: BannerLayer = {
@@ -135,6 +136,51 @@ const Home: NextPage = () => {
             },
           ],
         }}
+      />
+      <Project
+        projects={[
+          {
+            name: "Smart Bank",
+            description: "Backend web service for banking system using Go",
+            url: "",
+            github: "https://github.com/mattchw/smart-bank",
+            image: "SmartBank.png",
+            tags: ["Go", "Backend", "PostgreSQL"],
+          },
+          {
+            name: "UKChat",
+            description:
+              "Slack-like React application with Firebase for Hongkongers to talk about UK topics in an organized way",
+            image: "UKChat.png",
+            url: "https://uk-chatroom.web.app/",
+            github: "https://uk-chatroom.web.app/",
+            tags: ["React", "Firebase", "Frontend", "Backend"],
+          },
+          {
+            name: "Killer Queue",
+            description:
+              "MERN stack application for shop/restaurant to organise queueing effectively",
+            image: "KillerQueue.png",
+            github: "https://github.com/mattchw/Killer-Queue",
+            tags: ["React", "MongoDB", "Frontend", "Backend"],
+          },
+          {
+            name: "Polipedia",
+            description:
+              "React/Redux web application with Spring Boot server showing political stances and background of celebrities in HK and US",
+            image: "Polipedia.png",
+            github: "https://github.com/mattchw/Polipedia",
+            tags: ["React", "Spring", "PostgreSQL", "Frontend", "Backend"],
+          },
+          {
+            name: "Buy2Play",
+            description:
+              "Nodejs with Express.js Web app for second-hand game trading",
+            image: "Buy2Play.png",
+            github: "https://github.com/mattchw/buy2play",
+            tags: ["Frontend", "Backend"],
+          },
+        ]}
       />
     </>
   );
