@@ -11,8 +11,31 @@ import { ParallaxBanner } from "react-scroll-parallax";
 import About from "../components/About/About";
 import Resume from "../components/Resume/Resume";
 import Project from "../components/Project/Project";
+import Blog from "../components/Blog/Blog";
 
 const Home: NextPage = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetch(
+        "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@mattchw"
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          // Fillter the array
+          const res = data.items; //This is an array with the content. No feed, no info about author etc..
+          const posts = res.filter(
+            (item: { categories: string | any[] }) => item.categories.length > 0
+          ); // That's the main trick* !
+          // console.log(posts)
+          setData(posts);
+        });
+    };
+
+    fetchData();
+  }, []);
+
   const background: BannerLayer = {
     image: "header-background.svg",
     translateY: [0, 50],
@@ -182,6 +205,7 @@ const Home: NextPage = () => {
           },
         ]}
       />
+      <Blog posts={data} />
     </>
   );
 };

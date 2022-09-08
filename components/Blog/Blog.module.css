@@ -1,0 +1,186 @@
+.blogs {
+  /* The image used */
+  background-size: cover;
+
+  overflow: hidden;
+
+  /* Full height */
+  /* height: 100vh; 
+  width: 100vw; */
+
+  /* Center and scale the image nicely */
+  /* background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+  color: white;
+}
+.blog-title hr {
+  width: 50%;
+  border: 1px solid #025f89;
+  margin-bottom: 5vh;
+}
+
+.content {
+  position: relative;
+  width: 95%;
+  max-width: 400px;
+  max-height: 300px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.content .content-overlay {
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  height: auto;
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  -moz-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+
+.content:hover .content-overlay {
+  opacity: 1;
+}
+
+.content-image {
+  width: 100%;
+}
+
+.content-details {
+  position: absolute;
+  text-align: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -moz-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.content:hover .content-details {
+  top: 50%;
+  left: 50%;
+  opacity: 1;
+}
+
+.content-details h3 {
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+}
+
+.content-details p {
+  font-family: "Raleway", sans-serif;
+  font-size: 2em;
+  color: #fff;
+  font-size: 1.5em;
+}
+
+.container {
+  position: relative;
+}
+
+#blogs .image {
+  object-fit: cover;
+  width: 100vw;
+  height: 250px;
+  box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.2);
+  /* border-radius: 15px; */
+}
+
+#blogs a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+#blogs h4 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 10px;
+}
+#blogs hr {
+  border: 1px solid #025f89;
+  width: 80%;
+}
+
+.overlay {
+  position: absolute;
+  border-radius: 15px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+@media only screen and (min-width: 0px) {
+  #blogs p {
+    font-size: 12px;
+  }
+  #blogs h3 {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  #blogs p {
+    font-size: 12px;
+  }
+  #blogs h3 {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  #blogs p {
+    font-size: 13px;
+  }
+  #blogs h3 {
+    font-size: 17px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  #blogs p {
+    font-size: 15px;
+  }
+  #blogs h4 {
+    font-size: 18px;
+  }
+}
