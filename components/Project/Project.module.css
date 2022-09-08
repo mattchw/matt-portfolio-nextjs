@@ -14,6 +14,13 @@
   background-repeat: no-repeat;
   background-size: cover; */
 }
+
+.projectContainer {
+  padding-top: 50px;
+  padding-bottom: 100px;
+  margin: 0 auto;
+}
+
 .projectsTitle hr {
   width: 50%;
   border: 1px solid #025f89;

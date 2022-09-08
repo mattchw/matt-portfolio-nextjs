@@ -36,12 +36,12 @@ const Project: React.FC<Props> = ({ projects }) => {
   };
   return (
     <Container className={styles.project}>
-      <Grid justify="center" align="center" className={styles.aboutContainer}>
+      <Grid justify="center" align="center" className={styles.projectContainer}>
         <Grid className={styles.projectsTitle}>
           <h2>Some of my Works</h2>
         </Grid>
+        <Grid>{renderProjects()}</Grid>
       </Grid>
-      <Grid>{renderProjects()}</Grid>
     </Container>
   );
 };
