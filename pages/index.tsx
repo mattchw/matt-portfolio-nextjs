@@ -12,6 +12,7 @@ import About from "../components/About/About";
 import Resume from "../components/Resume/Resume";
 import Project from "../components/Project/Project";
 import Blog from "../components/Blog/Blog";
+import Contact from "../components/Contact/Contact";
 
 const Home: NextPage = () => {
   const [data, setData] = useState([]);
@@ -206,6 +207,14 @@ const Home: NextPage = () => {
         ]}
       />
       <Blog posts={data} />
+      <Contact
+        socials={[
+          {
+            name: "Github",
+            url: "http://github.com/mattchw",
+          },
+        ]}
+      />
     </>
   );
 };
