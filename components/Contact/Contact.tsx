@@ -1,4 +1,11 @@
-import { Button, Container, Grid, Text, TextInput } from "@mantine/core";
+import {
+  Button,
+  Container,
+  Grid,
+  Text,
+  Textarea,
+  TextInput,
+} from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -18,6 +25,10 @@ const Contact: React.FC<Props> = ({ socials }) => {
     email: "",
     message: "",
   });
+  const handleChange =
+    (prop: string) => (event: { target: { value: string } }) => {
+      setValues({ ...values, [prop]: event.target.value });
+    };
   const networks = socials.map(function (network) {
     return (
       <li key={network.name}>
@@ -29,93 +40,71 @@ const Contact: React.FC<Props> = ({ socials }) => {
   });
   return (
     <Container className={styles.contact}>
-      <Grid justify="center" align="center" className={styles.contactHeader}>
+      <Grid justify="center" align="center">
         <h2>Contact</h2>
       </Grid>
-      <Grid>
-        <div className="card">
-          <Grid className="additional" style={{ margin: "auto 0" }}>
-            <Grid style={{ margin: "auto", padding: 10 }}>
+      <Grid justify="center" align="center">
+        <div className={styles.card}>
+          <div className={styles.additional}>
+            <div style={{ margin: "auto" }}>
               {/* <img src={logo} alt="logo" style={{ width: 30 }} /> */}
-              <div style={{ margin: "auto" }} className="circle">
+              <div style={{ margin: "auto" }} className={styles.circle}>
                 {/* <img src={profilepic} alt={name} /> */}
               </div>
 
-              <div className="cardName">
-                <span>Hi</span>
+              <div className={styles.cardName}>
+                <span>Matt</span>
               </div>
-            </Grid>
-          </Grid>
-          <Grid className="general">
-            <Grid style={{ fontSize: 13 }}>
-              <p className="address" style={{ color: "#525252" }}>
-                <span>ewfewfewf</span>
-                <br />
-                <Link href="/hello" passHref>
-                  <Button style={{ fontSize: 13 }}>ewfewfewfwfwe</Button>
-                </Link>
-              </p>
-              <ul className="social-links more">{networks}</ul>
-            </Grid>
-          </Grid>
+            </div>
+          </div>
+          <div className={styles.general}>
+            <div className={styles.center}>
+              <div>
+                <Text>Hong Kong</Text>
+              </div>
+              <Button>matthew.chohin@gmail.com</Button>
+            </div>
+
+            {/* <ul className={styles.socialLinks}>{networks}</ul> */}
+          </div>
         </div>
       </Grid>
-      <Grid style={{ paddingTop: 20, width: "75%" }}>
+      <Grid justify="center" align="center" style={{ paddingTop: 20 }}>
         <h4>Have a question or want to work together?</h4>
-        <form>
-          <div>
-            <TextInput
-              required
-              variant="filled"
-              label="Name"
-              value={values.name}
-              style={{
-                margin: "10px auto",
-                backgroundColor: "#e2e2e2",
-                borderRadius: "5px 5px 0 0",
-              }}
-            />
-          </div>
-          <div>
-            <TextInput
-              required
-              variant="filled"
-              label="Email"
-              value={values.email}
-              style={{
-                margin: "10px auto",
-                backgroundColor: "#e2e2e2",
-                borderRadius: "5px 5px 0 0",
-              }}
-            />
-          </div>
-          <div>
-            <TextInput
-              label="Message"
-              variant="filled"
-              value={values.message}
-              style={{
-                margin: "10px auto",
-                backgroundColor: "#e2e2e2",
-                borderRadius: "5px 5px 0 0",
-              }}
-            />
-          </div>
+      </Grid>
+      <form>
+        <TextInput
+          required
+          label="Name"
+          value={values.name}
+          onChange={handleChange("name")}
+        />
+        <TextInput
+          required
+          label="Email"
+          value={values.email}
+          onChange={handleChange("email")}
+        />
+        <Textarea
+          label="Message"
+          minRows={4}
+          value={values.message}
+          onChange={handleChange("message")}
+        />
+        <Grid justify="center" align="center" style={{ paddingTop: 20 }}>
           <Button
             type="submit"
             style={{ color: "#e2e2e2", fontWeight: "bold" }}
           >
             Send
           </Button>
-        </form>
-      </Grid>
+        </Grid>
+      </form>
 
-      <Grid style={{ paddingTop: 20 }}>
-        <hr />
-        <ul className="copyright" style={{ paddingTop: 20 }}>
-          <li>Copyright &copy; Matthew Wong {new Date().getFullYear()}</li>
-        </ul>
-      </Grid>
+      <hr />
+      <ul className="copyright" style={{ paddingTop: 20 }}>
+        <li>Copyright &copy; Matthew Wong {new Date().getFullYear()}</li>
+      </ul>
     </Container>
   );
 };
