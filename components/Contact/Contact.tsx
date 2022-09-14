@@ -11,6 +11,9 @@ import Link from "next/link";
 import { useState } from "react";
 import styles from "./Contact.module.css";
 
+// componenets
+import BusinessCard from "./BusinessCard/BusinessCard";
+
 export interface Props {
   socials: {
     name: string;
@@ -44,30 +47,7 @@ const Contact: React.FC<Props> = ({ socials }) => {
         <h2>Contact</h2>
       </Grid>
       <Grid justify="center" align="center">
-        <div className={styles.card}>
-          <div className={styles.additional}>
-            <div style={{ margin: "auto" }}>
-              {/* <img src={logo} alt="logo" style={{ width: 30 }} /> */}
-              <div style={{ margin: "auto" }} className={styles.circle}>
-                {/* <img src={profilepic} alt={name} /> */}
-              </div>
-
-              <div className={styles.cardName}>
-                <span>Matt</span>
-              </div>
-            </div>
-          </div>
-          <div className={styles.general}>
-            <div className={styles.center}>
-              <div>
-                <Text>Hong Kong</Text>
-              </div>
-              <Button>matthew.chohin@gmail.com</Button>
-            </div>
-
-            {/* <ul className={styles.socialLinks}>{networks}</ul> */}
-          </div>
-        </div>
+        <BusinessCard name={"Matt Wong"} image={"/profilepic-about.svg"} />
       </Grid>
       <Grid justify="center" align="center" style={{ paddingTop: 20 }}>
         <h4>Have a question or want to work together?</h4>
@@ -101,10 +81,13 @@ const Contact: React.FC<Props> = ({ socials }) => {
         </Grid>
       </form>
 
-      <hr />
-      <ul className="copyright" style={{ paddingTop: 20 }}>
-        <li>Copyright &copy; Matthew Wong {new Date().getFullYear()}</li>
-      </ul>
+      <Grid justify="center" align="center" style={{ paddingTop: 50 }}>
+        <Grid>
+          <ul className={styles.copyright}>
+            <li>Copyright &copy; Matthew Wong {new Date().getFullYear()}</li>
+          </ul>
+        </Grid>
+      </Grid>
     </Container>
   );
 };
