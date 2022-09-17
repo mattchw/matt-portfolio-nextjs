@@ -258,6 +258,14 @@
     "@mantine/ssr" "5.1.6"
     "@mantine/styles" "5.1.6"
 
+"@mantine/prism@^5.3.3":
+  version "5.3.3"
+  resolved "https://npm.appicidea.com/@mantine%2fprism/-/prism-5.3.3.tgz#986c0bf0ea63eade7fde7c9c8622cfe7f6eef088"
+  integrity sha512-uJRlb6w9n9WccUPs//kaPLTDjVDYB92uvKX/Xr0mtjIxdE+GXjfSxtKKLwPjOW/bVESS/WTaNPt78os55cteZg==
+  dependencies:
+    "@mantine/utils" "5.3.3"
+    prism-react-renderer "^1.2.1"
+
 "@mantine/ssr@5.1.6":
   version "5.1.6"
   resolved "https://npm.appicidea.com/@mantine%2fssr/-/ssr-5.1.6.tgz#573e45b199357c57be837b6edc394500268d188a"
@@ -283,6 +291,11 @@
   version "5.2.6"
   resolved "https://npm.appicidea.com/@mantine%2futils/-/utils-5.2.6.tgz#7423fb8533cd22f7dcb4de6823e5a936f4b0b7af"
   integrity sha512-5YGfdHPxYgyjl/0/HhIE0/AVJjx+cTh/7OMSMhznPmCjpfvZFkFWUwht12YnRmhfPT9RwK6BuWe+O34kAIfW8Q==
+
+"@mantine/utils@5.3.3":
+  version "5.3.3"
+  resolved "https://npm.appicidea.com/@mantine%2futils/-/utils-5.3.3.tgz#0006bd3aef7dc5f955517d02da611cb499c7e07c"
+  integrity sha512-UoIBNjsXI2j1Sv4oslhOhGORE0pkbwpJ42+55dVQjTXRzDsloYNssyad1xO+kS8icF0y3HV3i+nz3B8b04W00A==
 
 "@next/env@12.2.4":
   version "12.2.4"
@@ -2076,6 +2089,11 @@ prettier@^2.7.1:
   version "2.7.1"
   resolved "https://npm.appicidea.com/prettier/-/prettier-2.7.1.tgz#e235806850d057f97bb08368a4f7d899f7760c64"
   integrity sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==
+
+prism-react-renderer@^1.2.1:
+  version "1.3.5"
+  resolved "https://npm.appicidea.com/prism-react-renderer/-/prism-react-renderer-1.3.5.tgz#786bb69aa6f73c32ba1ee813fbe17a0115435085"
+  integrity sha512-IJ+MSwBWKG+SM3b2SUfdrhC+gu01QkV2KmRQgREThBfSQRoufqRfxfHUxpG1WcaFjP+kojcFyO9Qqtpgt3qLCg==
 
 process-nextick-args@~2.0.0:
   version "2.0.1"

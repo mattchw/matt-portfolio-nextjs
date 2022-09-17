@@ -1,4 +1,5 @@
 import { Container, Grid, Text } from "@mantine/core";
+import { Prism } from "@mantine/prism";
 import Image from "next/image";
 import styles from "./About.module.css";
 
@@ -11,6 +12,14 @@ export interface Props {
 }
 
 const About: React.FC<Props> = ({ data: { title, description, skills } }) => {
+  const demoCode = `
+{
+  "title": "About",
+  "description": "I'm a full-stack developer 😎 with a passion for building web applications. I have experience with React, Next.js, Node.js, Express, MongoDB, and PostgreSQL. I'm currently looking for a full-time position as a software engineer.",
+  "skills": [],
+}
+  `;
+
   const renderSkills = () => {
     return skills.map((skill, index) => (
       <Grid.Col key={index} span={4}>
@@ -38,9 +47,9 @@ const About: React.FC<Props> = ({ data: { title, description, skills } }) => {
           <Grid>
             <h2>About Me</h2>
           </Grid>
-          <Grid>
-            <Text size="sm">{description}</Text>
-          </Grid>
+          <Prism language="json" withLineNumbers>
+            {demoCode}
+          </Prism>
           <Grid>
             <h4 className="about-skills-text">
               <span>Code Skills</span>
