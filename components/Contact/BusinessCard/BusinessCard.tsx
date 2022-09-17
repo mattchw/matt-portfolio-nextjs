@@ -1,12 +1,31 @@
 /* eslint-disable @next/next/no-img-element */
 import styles from "./BusinessCard.module.css";
+import SocialNetwork from "../SocialNetwork/SocialNetwork";
 
 export interface Props {
   name: string;
   image?: string;
+  email: string;
+  networks?: {
+    name: string;
+    url: string;
+  }[];
 }
 
-const BusinessCard: React.FC<Props> = ({ name, image }) => {
+const BusinessCard: React.FC<Props> = ({ name, image, email, networks }) => {
+  const renderNetworks = () => {
+    if (networks) {
+      return networks.map(function (network) {
+        return (
+          <li key={network.name}>
+            <a href={network.url}>
+              <SocialNetwork name={network.name} size={24} />
+            </a>
+          </li>
+        );
+      });
+    }
+  };
   return (
     <div className={styles.card}>
       <div className={styles.additional}>
@@ -24,10 +43,10 @@ const BusinessCard: React.FC<Props> = ({ name, image }) => {
       <div className={styles.general}>
         <div className={styles.cardConatiner}>
           <p>Hong Kong</p>
-          <p>matthew.chohin@gmail.com</p>
+          <button className={styles.email}>{email}</button>
         </div>
 
-        {/* <ul className={styles.socialLinks}>{networks}</ul> */}
+        <ul className={styles.socialLinks}>{renderNetworks()}</ul>
       </div>
     </div>
   );

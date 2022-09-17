@@ -41,6 +41,20 @@
   z-index: 2;
   background-color: #168ac0;
 }
+.card .email {
+  background-color: #00000000;
+  border: none;
+  color: #525252;
+  padding: 4px 5px;
+  text-align: center;
+  transition: 0.3s;
+  border-radius: 4px;
+  font-family: "Open Sans", sans-serif;
+}
+.card .email:hover {
+  color: #1080b4;
+  background-color: #aaaaaa2c;
+}
 .card .cardName {
   margin: 10px 0;
   color: #fff;
@@ -101,8 +115,11 @@
 /* social links */
 .socialLinks {
   /* margin: 18px 0 30px 0; */
+  position: absolute;
+  bottom: 0;
+  right: 1rem;
   padding: 0;
-  font-size: 25px;
+  margin: 0;
 }
 .socialLinks li {
   display: inline-block;
