@@ -78,7 +78,7 @@ const Resume: React.FC<Props> = ({ data: { work, education } }) => {
     );
   };
   return (
-    <Container className={styles.about}>
+    <Container size="lg" px="xs" className={styles.about}>
       <Grid justify="center" className={styles.resumeContainer}>
         <Grid.Col span={3}>
           <h3 className={styles.resumeLeftTitle}>
