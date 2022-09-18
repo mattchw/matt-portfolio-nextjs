@@ -17,29 +17,29 @@ export interface Props {
 
 const Blog: React.FC<Props> = ({ posts }) => {
   const renderPosts = () => {
-    return posts.slice(0, 8).map((post) => {
+    return posts.slice(0, 6).map((post) => {
       return (
-        <Grid.Col span={3} key={post.title} style={{ padding: 10 }}>
+        <Grid.Col span={4} key={post.title} style={{ padding: 10 }}>
           <Card shadow="sm" p="lg" radius="md" withBorder>
-            <Card.Section component="a" href="https://mantine.dev/">
-              <Image src={post.thumbnail} height={160} alt="Norway" />
+            <Card.Section component="a" href={post.link} target="_blank">
+              <Image src={post.thumbnail} height={160} alt={post.title} />
             </Card.Section>
 
             <Group position="apart" mt="md" mb="xs">
-              <Text weight={500}>Norway Fjord Adventures</Text>
-              <Badge color="pink" variant="light">
-                On Sale
-              </Badge>
+              <Text lineClamp={1} weight={500}>
+                {post.title}
+              </Text>
             </Group>
+            {post.categories.slice(0, 2).map((category, index) => (
+              <Badge key={index} color="pink" size="sm">
+                {category}
+              </Badge>
+            ))}
 
-            <Text size="sm" color="dimmed">
-              With Fjord Tours you can explore more of the magical fjord
-              landscapes with tours and activities on and around the fjords of
-              Norway
-            </Text>
+            <Text size="sm" color="dimmed"></Text>
 
             <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-              Book classic tour now
+              {post.pubDate.slice(0, 10)}
             </Button>
           </Card>
         </Grid.Col>

@@ -1,11 +1,8 @@
 import { Center, Grid, Title, Text, Divider, Container } from "@mantine/core";
-import { createGetInitialProps } from "@mantine/next";
 import type { NextPage } from "next";
-import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
-import aboutStyles from "../styles/About.module.css";
 import { BannerLayer } from "react-scroll-parallax/dist/components/ParallaxBanner/types";
 import { ParallaxBanner } from "react-scroll-parallax";
 import About from "../components/About/About";
@@ -24,12 +21,10 @@ const Home: NextPage = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          // Fillter the array
-          const res = data.items; //This is an array with the content. No feed, no info about author etc..
+          const res = data.items;
           const posts = res.filter(
             (item: { categories: string | any[] }) => item.categories.length > 0
-          ); // That's the main trick* !
-          // console.log(posts)
+          );
           setData(posts);
         });
     };
