@@ -1,5 +1,5 @@
 import React from "react";
-import { LinkedIn, GitHub } from "../Icons";
+import { LinkedIn, GitHub } from "./Icons";
 
 export interface Props {
   name: string;

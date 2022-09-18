@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import styles from "./BusinessCard.module.css";
-import SocialNetwork from "../SocialNetwork/SocialNetwork";
+import SocialNetwork from "./SocialNetwork/SocialNetwork";
 
 export interface Props {
   name: string;

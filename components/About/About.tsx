@@ -1,7 +1,8 @@
-import { Container, Grid, Text } from "@mantine/core";
+import { Container, Grid, Text, useMantineTheme } from "@mantine/core";
 import { Prism } from "@mantine/prism";
 import Image from "next/image";
 import styles from "./About.module.css";
+import Skill from "./Skill/Skill";
 
 export interface Props {
   data: {
@@ -12,20 +13,25 @@ export interface Props {
 }
 
 const About: React.FC<Props> = ({ data: { title, description, skills } }) => {
+  const theme = useMantineTheme();
   const demoCode = `
 {
-  "title": "About",
-  "description": "I'm a full-stack developer 😎 with a passion for building web applications. I have experience with React, Next.js, Node.js, Express, MongoDB, and PostgreSQL. I'm currently looking for a full-time position as a software engineer.",
-  "skills": [],
+  "title": "${title}",
+  "description": "${description}",
+  "skills": [
+    ${skills.map((skill) => `"${skill}"`).join(", ")}
+  ],
 }
   `;
 
   const renderSkills = () => {
     return skills.map((skill, index) => (
-      <Grid.Col key={index} span={4}>
-        <Text size="lg" color="gray">
-          {skill}
-        </Text>
+      <Grid.Col key={index} span={3}>
+        <Skill
+          name={skill}
+          color={theme.colorScheme === "dark" ? theme.white : theme.black}
+        />
+        <Text size="lg">{skill}</Text>
       </Grid.Col>
     ));
   };
