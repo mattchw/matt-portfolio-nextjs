@@ -26,19 +26,19 @@ const About: React.FC<Props> = ({ data: { title, description, skills } }) => {
 
   const renderSkills = () => {
     return skills.map((skill, index) => (
-      <Grid.Col key={index} span={3}>
+      <Grid.Col key={index} span={3} style={{ textAlign: "center" }}>
         <Skill
           name={skill}
           color={theme.colorScheme === "dark" ? theme.white : theme.black}
         />
-        <Text size="lg">{skill}</Text>
+        <Text size="sm">{skill}</Text>
       </Grid.Col>
     ));
   };
   return (
-    <Container className={styles.about}>
+    <Container size="xl" px="xs" className={styles.about}>
       <Grid justify="center" align="center" className={styles.aboutContainer}>
-        <Grid.Col span={5}>
+        <Grid.Col md={12} lg={4}>
           <div className={styles.aboutImgCircle}>
             <Image
               src="/profilepic-about.svg"
@@ -49,7 +49,7 @@ const About: React.FC<Props> = ({ data: { title, description, skills } }) => {
             />
           </div>
         </Grid.Col>
-        <Grid.Col span={7}>
+        <Grid.Col md={12} lg={8}>
           <Grid>
             <h2>About Me</h2>
           </Grid>
