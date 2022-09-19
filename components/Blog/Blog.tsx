@@ -19,7 +19,7 @@ const Blog: React.FC<Props> = ({ posts }) => {
   const renderPosts = () => {
     return posts.slice(0, 6).map((post) => {
       return (
-        <Grid.Col span={4} key={post.title} style={{ padding: 10 }}>
+        <Grid.Col sm={6} md={4} key={post.title} style={{ padding: 10 }}>
           <Card shadow="sm" p="lg" radius="md" withBorder>
             <Card.Section component="a" href={post.link} target="_blank">
               <Image src={post.thumbnail} height={160} alt={post.title} />
@@ -30,17 +30,23 @@ const Blog: React.FC<Props> = ({ posts }) => {
                 {post.title}
               </Text>
             </Group>
-            {post.categories.slice(0, 2).map((category, index) => (
-              <Badge key={index} color="pink" size="sm">
-                {category}
-              </Badge>
-            ))}
+            <Group position="left" mt="md" mb="xs">
+              {post.categories.slice(0, 1).map((category, index) => (
+                <Badge key={index} color="pink" size="sm">
+                  {category}
+                </Badge>
+              ))}
+            </Group>
 
-            <Text size="sm" color="dimmed"></Text>
+            <Text size="sm" color="dimmed" lineClamp={3}>
+              {post.description
+                .replace(/<\/?[^>]+(>|$)/g, "")
+                .substring(0, 300)}
+            </Text>
 
-            <Button variant="light" color="blue" fullWidth mt="md" radius="md">
+            {/* <Button variant="light" color="blue" fullWidth mt="md" radius="md">
               {post.pubDate.slice(0, 10)}
-            </Button>
+            </Button> */}
           </Card>
         </Grid.Col>
       );
