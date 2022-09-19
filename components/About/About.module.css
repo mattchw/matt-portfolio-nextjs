@@ -21,6 +21,10 @@
   margin: auto;
 }
 
+.aboutHeading {
+  margin-bottom: 20px;
+}
+
 .about-img {
   width: 250px;
 }
@@ -35,7 +39,12 @@
   padding-top: 10px;
 }
 
-.about-skills-text {
+.aboutSkillsHeading {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.aboutSkillsHeadingText {
   margin: 12px 0;
   padding: 5px 0;
   border-bottom: 2px dotted #989898;

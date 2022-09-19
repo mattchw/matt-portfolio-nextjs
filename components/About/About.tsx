@@ -3,6 +3,7 @@ import { Prism } from "@mantine/prism";
 import Image from "next/image";
 import styles from "./About.module.css";
 import Skill from "./Skill/Skill";
+import { IconCode } from "@tabler/icons";
 
 export interface Props {
   data: {
@@ -50,16 +51,21 @@ const About: React.FC<Props> = ({ data: { title, description, skills } }) => {
           </div>
         </Grid.Col>
         <Grid.Col md={12} lg={8}>
-          <Grid>
+          <Grid justify="center" align="center" className={styles.aboutHeading}>
             <h2>About Me</h2>
           </Grid>
           <Prism language="json" withLineNumbers>
             {demoCode}
           </Prism>
-          <Grid>
-            <h4 className="about-skills-text">
+          <Grid
+            justify="center"
+            align="center"
+            className={styles.aboutSkillsHeading}
+          >
+            <Grid className={styles.aboutSkillsHeadingText}>
+              <IconCode size={20} style={{ marginRight: 10 }} />
               <span>Code Skills</span>
-            </h4>
+            </Grid>
           </Grid>
           <Grid>{renderSkills()}</Grid>
         </Grid.Col>
