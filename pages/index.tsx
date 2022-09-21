@@ -107,12 +107,32 @@ const Home: NextPage = () => {
         data={{
           work: [
             {
+              company: "SHOPLINE",
+              image: "/resume/work/shopline.jpeg",
+              positions: [
+                {
+                  title: "Software Engineer",
+                  startDate: "June 2022",
+                  endDate: "Present",
+                  description: [
+                    "Architect and design highly available and scalable solutions using AWS including EC2, VPC, S3, RDS for clients",
+                    "Collaborate with frontend developers and provide assistance and guidance on the integration of server-side APIs",
+                    "Develop and implement 5 server-side applications using Ts.ED (Node.js framework with Typescript) integrating with MySQL, PostgreSQL, Redis, RabbitMQ and Elasticsearch",
+                    "Write unit tests, end-to-end tests and integration tests and achieve over 70% code coverage with Jest and Supertest",
+                    "Asist on frequent code merges, builds, deployments with CI/CD pipeline using Jenkins, Docker and Kubernetes and setting up of the deployment environments including internal UAT and production on AWS",
+                    "Maintain and monitor production applications with Kibana APM system on Elastic Cloud and provide technical support to clients",
+                  ],
+                },
+              ],
+            },
+            {
               company: "AppicIDEA IT Solutions Limited",
+              image: "/resume/work/appicidea.jpeg",
               positions: [
                 {
                   title: "Software Engineer",
                   startDate: "June 2021",
-                  endDate: "Present",
+                  endDate: "June 2022",
                   description: [
                     "Architect and design highly available and scalable solutions using AWS including EC2, VPC, S3, RDS for clients",
                     "Collaborate with frontend developers and provide assistance and guidance on the integration of server-side APIs",
@@ -137,6 +157,7 @@ const Home: NextPage = () => {
             },
             {
               company: "Zensis Limited",
+              image: "/resume/work/zensis.png",
               positions: [
                 {
                   title: "Backend Developer",
@@ -154,6 +175,7 @@ const Home: NextPage = () => {
           education: [
             {
               school: "The Chinese University of Hong Kong",
+              image: "/resume/education/cuhk.png",
               degree: "B.Sc. in Computer Science",
               startDate: "September 2015",
               endDate: "July 2019",

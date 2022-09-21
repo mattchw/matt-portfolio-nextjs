@@ -1,5 +1,6 @@
 interface Work {
   company: string;
+  image?: string;
   positions: WorkPosition[];
 }
 

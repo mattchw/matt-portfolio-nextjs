@@ -5,10 +5,12 @@ import {
   Text,
   List,
   Timeline,
+  Avatar,
+  Group,
 } from "@mantine/core";
-import Image from "next/image";
 import { Work, Education } from "../../interfaces";
 import styles from "./Resume.module.css";
+import { IconBriefcase, IconSchool } from "@tabler/icons";
 
 export interface Props {
   data: {
@@ -20,10 +22,15 @@ export interface Props {
 const Resume: React.FC<Props> = ({ data: { work, education } }) => {
   const renderWork = () => {
     return (
-      <Accordion variant="filled" defaultValue="work">
+      <Accordion variant="contained" defaultValue="work">
         {work.map((item, index) => (
           <Accordion.Item key={index} value={item.company}>
-            <Accordion.Control>{item.company}</Accordion.Control>
+            <Accordion.Control>
+              <Group noWrap>
+                <Avatar src={item.image} radius="xl" size="lg" />
+                <Text>{item.company}</Text>
+              </Group>
+            </Accordion.Control>
             <Accordion.Panel>
               <Timeline
                 active={item.positions.length}
@@ -55,10 +62,15 @@ const Resume: React.FC<Props> = ({ data: { work, education } }) => {
   };
   const renderEducation = () => {
     return (
-      <Accordion variant="filled" defaultValue="education">
+      <Accordion variant="contained" defaultValue="education">
         {education.map((item, index) => (
           <Accordion.Item key={index} value={item.school}>
-            <Accordion.Control>{item.school}</Accordion.Control>
+            <Accordion.Control>
+              <Group noWrap>
+                <Avatar src={item.image} radius="xl" size="lg" />
+                <Text>{item.school}</Text>
+              </Group>
+            </Accordion.Control>
             <Accordion.Panel>
               <Text size="sm" mt={4}>
                 {item.degree}
@@ -81,17 +93,19 @@ const Resume: React.FC<Props> = ({ data: { work, education } }) => {
     <Container size="lg" px="xs" className={styles.about}>
       <Grid justify="center" className={styles.resumeContainer}>
         <Grid.Col span={3}>
-          <h3 className={styles.resumeLeftTitle}>
+          <Grid className={styles.resumeLeftTitle}>
+            <IconBriefcase size={24} className="icon" />
             <span>Work</span>
-          </h3>
+          </Grid>
         </Grid.Col>
         <Grid.Col span={9}>{renderWork()}</Grid.Col>
       </Grid>
       <Grid justify="center" className={styles.resumeContainer}>
         <Grid.Col span={3}>
-          <h3 className={styles.resumeLeftTitle}>
+          <Grid className={styles.resumeLeftTitle}>
+            <IconSchool size={24} className="icon" />
             <span>Education</span>
-          </h3>
+          </Grid>
         </Grid.Col>
         <Grid.Col span={9}>{renderEducation()}</Grid.Col>
       </Grid>

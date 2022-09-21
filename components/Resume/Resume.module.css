@@ -5,7 +5,7 @@
 }
 
 .resumeLeftTitle {
-  border-left: "3px solid #025f89";
-  float: "left";
-  padding-left: 10px;
+  border-left: 3px solid #025f89;
+  padding-left: 12px;
+  margin: 0;
 }
