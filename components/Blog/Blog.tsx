@@ -36,17 +36,15 @@ const Blog: React.FC<Props> = ({ posts }) => {
                   {category}
                 </Badge>
               ))}
+              <Badge size="sm">{post.pubDate.slice(0, 10)}</Badge>
             </Group>
 
             <Text size="sm" color="dimmed" lineClamp={3}>
               {post.description
+                .replace(/<figure>.*?<\/figure>\s?/g, "")
                 .replace(/<\/?[^>]+(>|$)/g, "")
                 .substring(0, 300)}
             </Text>
-
-            {/* <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-              {post.pubDate.slice(0, 10)}
-            </Button> */}
           </Card>
         </Grid.Col>
       );
