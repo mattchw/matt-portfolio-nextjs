@@ -84,7 +84,7 @@ const Home: NextPage = () => {
         layers={[background, astronaut, headline]}
         style={{
           height: "200vh",
-          width: "100vw",
+          width: "100%",
         }}
       />
       <About
