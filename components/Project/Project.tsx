@@ -3,14 +3,14 @@ import {
   Container,
   Grid,
   Paper,
-  Text,
   Title,
   createStyles,
 } from "@mantine/core";
-import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay";
 import styles from "./Project.module.css";
 import { Project as ProjectType } from "../../interfaces";
 import { Carousel } from "@mantine/carousel";
+import { useRef } from "react";
 
 export interface Props {
   projects: ProjectType[];
@@ -18,78 +18,14 @@ export interface Props {
 
 const Project: React.FC<Props> = ({ projects }) => {
   const renderProjects = () => {
-    return projects.map((project) => {
-      return (
-        <Grid.Col span={4} key={project.name} style={{ padding: 10 }}>
-          <div className={styles.container}>
-            <a href={project.url} title={project.name}>
-              <Image
-                src={"/projects/" + project.image}
-                alt={project.name}
-                width={600}
-                height={300}
-                className={styles.image}
-              />
-              <div className={styles.overlay}>
-                <div className={styles.text}>
-                  <h3 className="content-title">{project.name}</h3>
-                  <hr />
-                  <p className="content-text">{project.description}</p>
-                </div>
-              </div>
-            </a>
-          </div>
-        </Grid.Col>
-      );
-    });
+    return projects.map((item) => (
+      <Carousel.Slide key={item.name}>
+        <Card {...item} />
+      </Carousel.Slide>
+    ));
   };
 
-  const data = [
-    {
-      image:
-        "https://images.unsplash.com/photo-1508193638397-1c4234db14d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
-      title: "Best forests to visit in North America",
-      category: "nature",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1559494007-9f5847c49d94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
-      title: "Hawaii beaches review: better than you think",
-      category: "beach",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1608481337062-4093bf3ed404?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
-      title: "Mountains at night: 12 best locations to enjoy the view",
-      category: "nature",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
-      title: "Aurora in Norway: when to visit for best experience",
-      category: "nature",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
-      title: "Best places to visit this winter",
-      category: "tourism",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1582721478779-0ae163c05a60?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
-      title: "Active volcanos reviews: travel at your own risk",
-      category: "nature",
-    },
-  ];
-
-  interface CardProps {
-    image: string;
-    title: string;
-    category: string;
-  }
-
-  const useStyles = createStyles((theme) => ({
+  const useStyles = createStyles((theme, _params, getRef) => ({
     card: {
       height: 440,
       display: "flex",
@@ -115,11 +51,32 @@ const Project: React.FC<Props> = ({ projects }) => {
       fontWeight: 700,
       textTransform: "uppercase",
     },
+
+    controls: {
+      ref: getRef("controls"),
+      transition: "opacity 150ms ease",
+      opacity: 0,
+    },
+
+    control: {
+      width: 40,
+      height: 40,
+      opacity: 1,
+    },
+
+    root: {
+      "&:hover": {
+        [`& .${getRef("controls")}`]: {
+          opacity: 1,
+        },
+      },
+    },
   }));
 
-  function Card({ image, name, description }: ProjectType) {
-    const { classes } = useStyles();
+  const { classes } = useStyles();
+  const autoplay = useRef(Autoplay({ delay: 5000 }));
 
+  function Card({ image, name, description }: ProjectType) {
     return (
       <Paper
         shadow="md"
@@ -140,12 +97,6 @@ const Project: React.FC<Props> = ({ projects }) => {
     );
   }
 
-  const slides = projects.map((item) => (
-    <Carousel.Slide key={item.name}>
-      <Card {...item} />
-    </Carousel.Slide>
-  ));
-
   return (
     <Container size="xl" px="xs" className={styles.project}>
       <Grid justify="center" align="center">
@@ -155,16 +106,18 @@ const Project: React.FC<Props> = ({ projects }) => {
       </Grid>
       <Carousel
         slideSize="33.333333%"
-        breakpoints={[
-          { maxWidth: "md", slideSize: "50%" },
-          { maxWidth: "sm", slideSize: "500%", slideGap: 0 },
-        ]}
+        breakpoints={[{ maxWidth: "md", slideSize: "50%" }]}
         slideGap="sm"
         align="start"
         slidesToScroll={1}
         withIndicators
+        loop
+        classNames={classes}
+        plugins={[autoplay.current]}
+        onMouseEnter={autoplay.current.stop}
+        onMouseLeave={autoplay.current.reset}
       >
-        {slides}
+        {renderProjects()}
       </Carousel>
     </Container>
   );
