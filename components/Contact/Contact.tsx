@@ -1,6 +1,7 @@
 import {
   Button,
   Container,
+  Divider,
   Grid,
   Text,
   Textarea,
@@ -49,6 +50,7 @@ const Contact: React.FC<Props> = ({ socials }) => {
       <Grid justify="center" align="center">
         <BusinessCard
           name={"Matt Wong"}
+          location={"Hong Kong"}
           image={"/profilepic-about.svg"}
           email="matthew.chohin@gmail.com"
           networks={[
@@ -66,7 +68,7 @@ const Contact: React.FC<Props> = ({ socials }) => {
       <Grid justify="center" align="center" style={{ paddingTop: 20 }}>
         <h4>Have a question or want to work together?</h4>
       </Grid>
-      <Grid justify="center" align="center" style={{ paddingTop: 20 }}>
+      <Grid justify="center" align="center" style={{ margin: 0 }}>
         <form style={{ width: "100%" }}>
           <TextInput
             required
@@ -86,7 +88,11 @@ const Contact: React.FC<Props> = ({ socials }) => {
             value={values.message}
             onChange={handleChange("message")}
           />
-          <Grid justify="center" align="center" style={{ paddingTop: 20 }}>
+          <Grid
+            justify="center"
+            align="center"
+            style={{ margin: 0, paddingTop: 20 }}
+          >
             <Button
               type="submit"
               style={{ color: "#e2e2e2", fontWeight: "bold" }}
@@ -97,12 +103,19 @@ const Contact: React.FC<Props> = ({ socials }) => {
         </form>
       </Grid>
 
-      <Grid justify="center" align="center" style={{ paddingTop: 80 }}>
-        <Grid>
-          <ul className={styles.copyright}>
-            <li>Copyright &copy; Matthew Wong {new Date().getFullYear()}</li>
-          </ul>
-        </Grid>
+      <div
+        style={{ paddingTop: 40, display: "flex", justifyContent: "center" }}
+      >
+        <Divider style={{ width: "50%" }} />
+      </div>
+      <Grid
+        justify="center"
+        align="center"
+        style={{ marginTop: 40, marginBottom: 40 }}
+      >
+        <ul className={styles.copyright}>
+          <li>Copyright &copy; Matthew Wong {new Date().getFullYear()}</li>
+        </ul>
       </Grid>
     </Container>
   );
