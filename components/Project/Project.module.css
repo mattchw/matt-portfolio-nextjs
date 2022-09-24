@@ -1,27 +1,21 @@
 .project {
-  /* The image used */
-  /* background: #444 url(../../static/images/background.png) no-repeat right top; */
   background-size: cover;
 
   overflow: hidden;
 
-  /* Full height */
-  /* height: 100vh; 
-  width: 100vw; */
-
-  /* Center and scale the image nicely */
-  /* background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover; */
   padding-top: 50px;
   padding-bottom: 100px;
   margin: 0 auto;
 }
 
-.projectsTitle hr {
-  width: 50%;
-  border: 1px solid #025f89;
-  margin-bottom: 2vh;
+.project h2 {
+  margin: 12px 0;
+  border-bottom: 3px solid #025f89;
+  padding-top: 10px;
+}
+
+.projectHeading {
+  margin-bottom: 20px;
 }
 
 .project-filters {

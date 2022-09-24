@@ -34,6 +34,9 @@ const Project: React.FC<Props> = ({ projects }) => {
       alignItems: "flex-start",
       backgroundSize: "cover",
       backgroundPosition: "center",
+      "&[data-active]": {
+        height: 500,
+      },
     },
 
     title: {
@@ -64,11 +67,25 @@ const Project: React.FC<Props> = ({ projects }) => {
       opacity: 1,
     },
 
+    slide: {
+      height: 480,
+    },
+
     root: {
       "&:hover": {
         [`& .${getRef("controls")}`]: {
           opacity: 1,
         },
+      },
+    },
+
+    indicator: {
+      width: 14,
+      height: 8,
+      transition: "width 250ms ease",
+
+      "&[data-active]": {
+        width: 40,
       },
     },
   }));
@@ -100,15 +117,15 @@ const Project: React.FC<Props> = ({ projects }) => {
   return (
     <Container size="xl" px="xs" className={styles.project}>
       <Grid justify="center" align="center">
-        <Grid className={styles.projectsTitle}>
-          <h2>Some of my Works</h2>
+        <Grid className={styles.projectHeading}>
+          <h2>Some of My Works</h2>
         </Grid>
       </Grid>
       <Carousel
         slideSize="33.333333%"
         breakpoints={[{ maxWidth: "md", slideSize: "50%" }]}
         slideGap="sm"
-        align="start"
+        align="center"
         slidesToScroll={1}
         withIndicators
         loop
