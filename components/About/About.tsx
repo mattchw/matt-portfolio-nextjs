@@ -80,7 +80,7 @@ const About: React.FC<Props> = ({ data: { title, description, skills } }) => {
             className={styles.aboutSkillsHeading}
           >
             <Grid className={styles.aboutSkillsHeadingText}>
-              <IconCode size={24} className="icon" />
+              <IconCode size={24} className="headingIcon" />
               <span>Code Skills</span>
             </Grid>
           </Grid>

@@ -1,6 +1,7 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 import { ParallaxProvider } from "react-scroll-parallax";
 import "../styles/globals.css";
 
@@ -25,9 +26,11 @@ export default function App(props: AppProps) {
           colorScheme: "dark",
         }}
       >
-        <ParallaxProvider>
-          <Component {...pageProps} />
-        </ParallaxProvider>
+        <NotificationsProvider>
+          <ParallaxProvider>
+            <Component {...pageProps} />
+          </ParallaxProvider>
+        </NotificationsProvider>
       </MantineProvider>
     </>
   );

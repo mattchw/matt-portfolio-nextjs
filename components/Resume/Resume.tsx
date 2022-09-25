@@ -140,7 +140,7 @@ const Resume: React.FC<Props> = ({ data: { work, education } }) => {
       <Grid justify="center" className={styles.resumeContainer}>
         <Grid.Col span={3}>
           <Grid className={styles.resumeLeftTitle}>
-            <IconBriefcase size={24} className="icon" />
+            <IconBriefcase size={24} className="headingIcon" />
             <span>Work</span>
           </Grid>
         </Grid.Col>
@@ -149,7 +149,7 @@ const Resume: React.FC<Props> = ({ data: { work, education } }) => {
       <Grid justify="center" className={styles.resumeContainer}>
         <Grid.Col span={3}>
           <Grid className={styles.resumeLeftTitle}>
-            <IconSchool size={24} className="icon" />
+            <IconSchool size={24} className="headingIcon" />
             <span>Education</span>
           </Grid>
         </Grid.Col>
