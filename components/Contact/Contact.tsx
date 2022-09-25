@@ -33,15 +33,24 @@ const Contact: React.FC<Props> = ({ socials }) => {
     (prop: string) => (event: { target: { value: string } }) => {
       setValues({ ...values, [prop]: event.target.value });
     };
-  const networks = socials.map(function (network) {
-    return (
-      <li key={network.name}>
-        <a href={network.url}>
-          <p>{network.name}</p>
-        </a>
-      </li>
-    );
-  });
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    fetch("https://formspree.io/xwkranjz", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    })
+      .then(() => {
+        alert("Success!");
+      })
+      .catch((error) => {
+        alert(error);
+      });
+
+    e.preventDefault();
+  };
   return (
     <Container className={styles.contact}>
       <Grid justify="center" align="center" className={styles.contactHeading}>
@@ -69,7 +78,7 @@ const Contact: React.FC<Props> = ({ socials }) => {
         <h4>Have a question or want to work together?</h4>
       </Grid>
       <Grid justify="center" align="center" style={{ margin: 0 }}>
-        <form style={{ width: "100%" }}>
+        <form onSubmit={handleSubmit} style={{ width: "100%" }}>
           <TextInput
             required
             label="Name"
