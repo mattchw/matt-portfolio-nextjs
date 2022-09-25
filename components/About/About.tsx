@@ -1,9 +1,17 @@
-import { Container, Grid, Text, useMantineTheme } from "@mantine/core";
+import {
+  Container,
+  Grid,
+  Text,
+  useMantineTheme,
+  Blockquote,
+} from "@mantine/core";
 import { Prism } from "@mantine/prism";
 import Image from "next/image";
 import styles from "./About.module.css";
 import Skill from "./Skill/Skill";
 import { IconCode } from "@tabler/icons";
+import { quotes } from "../../constants/quotes";
+import { useEffect, useState } from "react";
 
 export interface Props {
   data: {
@@ -24,6 +32,12 @@ const About: React.FC<Props> = ({ data: { title, description, skills } }) => {
   ],
 }
   `;
+
+  const [quote, setQuote] = useState(quotes[0]);
+
+  useEffect(() => {
+    setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
+  }, []);
 
   const renderSkills = () => {
     return skills.map((skill, index) => (
@@ -54,7 +68,10 @@ const About: React.FC<Props> = ({ data: { title, description, skills } }) => {
           <Grid justify="center" align="center" className={styles.aboutHeading}>
             <h2>About Me</h2>
           </Grid>
-          <Prism language="json" withLineNumbers>
+          <Blockquote style={{ marginBottom: 20 }} cite={`- ${quote.cite}`}>
+            {quote.quote}
+          </Blockquote>
+          <Prism language="json" withLineNumbers colorScheme="dark">
             {demoCode}
           </Prism>
           <Grid
