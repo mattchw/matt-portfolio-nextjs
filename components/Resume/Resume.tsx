@@ -7,6 +7,7 @@ import {
   Timeline,
   Avatar,
   Group,
+  createStyles,
 } from "@mantine/core";
 import { Work, Education } from "../../interfaces";
 import styles from "./Resume.module.css";
@@ -19,10 +20,51 @@ export interface Props {
   };
 }
 
+const useStyles = createStyles((theme) => ({
+  root: {
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[6]
+        : theme.colors.gray[0],
+    borderRadius: theme.radius.sm,
+  },
+
+  item: {
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[6]
+        : theme.colors.gray[0],
+    border: "1px solid transparent",
+    position: "relative",
+    zIndex: 0,
+    transition: "transform 150ms ease",
+
+    "&[data-active]": {
+      transform: "scale(1.03)",
+      backgroundColor:
+        theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+      boxShadow: theme.shadows.md,
+      borderColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[4]
+          : theme.colors.gray[2],
+      borderRadius: theme.radius.md,
+      zIndex: 1,
+    },
+  },
+
+  chevron: {
+    "&[data-rotate]": {
+      transform: "rotate(-90deg)",
+    },
+  },
+}));
+
 const Resume: React.FC<Props> = ({ data: { work, education } }) => {
+  const { classes } = useStyles();
   const renderWork = () => {
     return (
-      <Accordion variant="contained" defaultValue="work">
+      <Accordion variant="contained" defaultValue="work" classNames={classes}>
         {work.map((item, index) => (
           <Accordion.Item key={index} value={item.company}>
             <Accordion.Control>
@@ -62,7 +104,11 @@ const Resume: React.FC<Props> = ({ data: { work, education } }) => {
   };
   const renderEducation = () => {
     return (
-      <Accordion variant="contained" defaultValue="education">
+      <Accordion
+        variant="contained"
+        defaultValue="education"
+        classNames={classes}
+      >
         {education.map((item, index) => (
           <Accordion.Item key={index} value={item.school}>
             <Accordion.Control>
