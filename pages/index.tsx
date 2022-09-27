@@ -1,4 +1,14 @@
-import { Center, Grid, Title, Text, Divider, Container } from "@mantine/core";
+import {
+  Center,
+  Grid,
+  Title,
+  Text,
+  Divider,
+  Container,
+  ActionIcon,
+  useMantineColorScheme,
+} from "@mantine/core";
+import { IconSun, IconMoonStars } from "@tabler/icons";
 import type { NextPage } from "next";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -13,6 +23,8 @@ import Contact from "../components/Contact/Contact";
 
 const Home: NextPage = () => {
   const [data, setData] = useState([]);
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const dark = colorScheme === "dark";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,6 +92,14 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <ActionIcon
+        variant="light"
+        color={dark ? "yellow" : "blue"}
+        onClick={() => toggleColorScheme()}
+        className="themeButton"
+      >
+        {dark ? <IconSun size={24} /> : <IconMoonStars size={24} />}
+      </ActionIcon>
       <ParallaxBanner
         layers={[background, astronaut, headline]}
         style={{

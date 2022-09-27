@@ -52,8 +52,10 @@ const Blog: React.FC<Props> = ({ posts }) => {
   };
   return (
     <Container size="xl" px="xs" className={styles.blog}>
-      <Grid justify="center" align="center" className={styles.blogHeading}>
-        <h2>My Latest Blogs</h2>
+      <Grid justify="center" align="center">
+        <Grid className={styles.blogHeading}>
+          <h2>My Latest Blogs</h2>
+        </Grid>
       </Grid>
       <Grid>{renderPosts()}</Grid>
     </Container>
