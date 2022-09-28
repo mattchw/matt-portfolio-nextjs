@@ -20,6 +20,7 @@ import Resume from "../components/Resume/Resume";
 import Project from "../components/Project/Project";
 import Blog from "../components/Blog/Blog";
 import Contact from "../components/Contact/Contact";
+import { TypeAnimation } from "react-type-animation";
 
 const Home: NextPage = () => {
   const [data, setData] = useState([]);
@@ -59,8 +60,18 @@ const Home: NextPage = () => {
     expanded: false,
     children: (
       <Center className={styles.content}>
-        <Title order={1}>{"Hi, I'm Matt Wong"}</Title>
-        <Divider my="sm" />
+        <TypeAnimation
+          sequence={[
+            "Hi, I'm Matt Wong",
+            4000,
+            "Hi, I'm a Software Engineer",
+            4000,
+          ]}
+          style={{ fontWeight: 300, fontSize: 60, lineHeight: 0.5 }}
+          wrapper="h1"
+          speed={30}
+          repeat={Infinity}
+        />
         <Text size="md">
           I code and explore new technologies, and I love what I do.
         </Text>
