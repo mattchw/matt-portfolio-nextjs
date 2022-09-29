@@ -83,9 +83,10 @@ const Project: React.FC<Props> = ({ projects }) => {
       width: 14,
       height: 8,
       transition: "width 250ms ease",
+      backgroundColor: theme.colors.gray[5],
 
       "&[data-active]": {
-        width: 40,
+        width: 50,
       },
     },
   }));
