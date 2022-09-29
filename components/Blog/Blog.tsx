@@ -24,14 +24,12 @@ const Blog: React.FC<Props> = ({ posts }) => {
       if (window.innerWidth < 768) {
         setPostNum(4);
       } else {
-        if (postNum !== 6) {
-          setPostNum(6);
-        }
+        setPostNum(6);
       }
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [postNum]);
+  }, []);
   const renderPosts = () => {
     return posts.slice(0, postNum).map((post) => {
       return (
