@@ -8,6 +8,7 @@ import {
   Text,
   Image,
 } from "@mantine/core";
+import { useEffect, useState } from "react";
 import BlogPost from "../../interfaces/blogPost";
 import styles from "./Blog.module.css";
 
@@ -16,8 +17,23 @@ export interface Props {
 }
 
 const Blog: React.FC<Props> = ({ posts }) => {
+  const [postNum, setPostNum] = useState(6);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setPostNum(4);
+      } else {
+        if (postNum !== 6) {
+          setPostNum(6);
+        }
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [postNum]);
   const renderPosts = () => {
-    return posts.slice(0, 6).map((post) => {
+    return posts.slice(0, postNum).map((post) => {
       return (
         <Grid.Col sm={6} md={4} key={post.title} style={{ padding: 10 }}>
           <Card shadow="sm" p="lg" radius="md" withBorder>
