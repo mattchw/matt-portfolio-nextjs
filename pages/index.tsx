@@ -48,14 +48,13 @@ const Home: NextPage = () => {
   const background: BannerLayer = {
     image: "header-background.svg",
     translateY: [0, 50],
-    opacity: [1, 0.3],
-    scale: [1.05, 1, "easeOutCubic"],
+    scale: [1.1, 1, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
   };
 
   const headline: BannerLayer = {
-    translateY: [0, 20],
-    scale: [1, 1.2, "easeOutCubic"],
+    translateY: [0, 5],
+    scale: [1, 1.5, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
     expanded: false,
     children: (
@@ -80,7 +79,7 @@ const Home: NextPage = () => {
   };
 
   const astronaut: BannerLayer = {
-    translateY: [0, 10],
+    translateY: [10, 15],
     scale: [1, 0.8, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
     children: (
@@ -101,6 +100,13 @@ const Home: NextPage = () => {
     ),
   };
 
+  const foreground: BannerLayer = {
+    image: "/banner-foreground.png",
+    translateY: [0, 20],
+    scale: [1, 1.2, "easeOutCubic"],
+    shouldAlwaysCompleteAnimation: true,
+  };
+
   return (
     <>
       <ActionIcon
@@ -112,9 +118,9 @@ const Home: NextPage = () => {
         {dark ? <IconSun size={24} /> : <IconMoonStars size={24} />}
       </ActionIcon>
       <ParallaxBanner
-        layers={[background, astronaut, headline]}
+        layers={[background, foreground, astronaut, headline]}
         style={{
-          height: "200vh",
+          height: "150vh",
           width: "100%",
         }}
       />
