@@ -48,12 +48,13 @@ const Home: NextPage = () => {
   const background: BannerLayer = {
     image: "header-background.svg",
     translateY: [0, 50],
-    scale: [1.1, 1, "easeOutCubic"],
+    opacity: [1, 0.5],
+    scale: [1.2, 1, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
   };
 
   const headline: BannerLayer = {
-    translateY: [0, 5],
+    translateY: [0, 0],
     scale: [1, 1.5, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
     expanded: false,
@@ -78,33 +79,30 @@ const Home: NextPage = () => {
     ),
   };
 
-  const astronaut: BannerLayer = {
-    translateY: [10, 15],
-    scale: [1, 0.8, "easeOutCubic"],
-    shouldAlwaysCompleteAnimation: true,
-    children: (
-      <Grid justify="flex-end" style={{ height: "100%" }}>
-        <Grid.Col span={4}>
-          <Container
-            style={{ height: "100%", display: "flex", paddingBottom: "50%" }}
-          >
-            <Image
-              src="/header-object.svg"
-              alt="Astronaut"
-              width={250}
-              height={250}
-            />
-          </Container>
-        </Grid.Col>
-      </Grid>
-    ),
-  };
-
   const foreground: BannerLayer = {
     image: "/banner-foreground.png",
-    translateY: [0, 20],
-    scale: [1, 1.2, "easeOutCubic"],
+    translateY: [-10, 15],
+    scale: [1, 1.1, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
+  };
+
+  const overlay: BannerLayer = {
+    opacity: [0, 0.9],
+    shouldAlwaysCompleteAnimation: true,
+    expanded: false,
+    children: (
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          background:
+            "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)",
+        }}
+      />
+    ),
   };
 
   return (
@@ -118,7 +116,7 @@ const Home: NextPage = () => {
         {dark ? <IconSun size={24} /> : <IconMoonStars size={24} />}
       </ActionIcon>
       <ParallaxBanner
-        layers={[background, foreground, astronaut, headline]}
+        layers={[background, foreground, headline, overlay]}
         style={{
           height: "150vh",
           width: "100%",
