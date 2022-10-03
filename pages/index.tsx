@@ -1,4 +1,14 @@
-import { Center, Grid, Title, Text, Divider, Container } from "@mantine/core";
+import {
+  Center,
+  Grid,
+  Title,
+  Text,
+  Divider,
+  Container,
+  ActionIcon,
+  useMantineColorScheme,
+} from "@mantine/core";
+import { IconSun, IconMoonStars } from "@tabler/icons";
 import type { NextPage } from "next";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -10,9 +20,12 @@ import Resume from "../components/Resume/Resume";
 import Project from "../components/Project/Project";
 import Blog from "../components/Blog/Blog";
 import Contact from "../components/Contact/Contact";
+import { TypeAnimation } from "react-type-animation";
 
 const Home: NextPage = () => {
   const [data, setData] = useState([]);
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const dark = colorScheme === "dark";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,20 +48,30 @@ const Home: NextPage = () => {
   const background: BannerLayer = {
     image: "header-background.svg",
     translateY: [0, 50],
-    opacity: [1, 0.3],
-    scale: [1.05, 1, "easeOutCubic"],
+    opacity: [0.9, 0.6],
+    scale: [1.15, 1, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
   };
 
   const headline: BannerLayer = {
-    translateY: [0, 20],
-    scale: [1, 1.2, "easeOutCubic"],
+    translateY: [0, 0],
+    scale: [1, 1.5, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
     expanded: false,
     children: (
       <Center className={styles.content}>
-        <Title order={1}>{"Hi, I'm Matt Wong"}</Title>
-        <Divider my="sm" />
+        <TypeAnimation
+          sequence={[
+            "Hi, I'm Matt Wong",
+            4000,
+            "Hi, I'm a Software Engineer",
+            4000,
+          ]}
+          style={{ fontWeight: 300, fontSize: 60, lineHeight: 0.5 }}
+          wrapper="h1"
+          speed={30}
+          repeat={Infinity}
+        />
         <Text size="md">
           I code and explore new technologies, and I love what I do.
         </Text>
@@ -56,34 +79,46 @@ const Home: NextPage = () => {
     ),
   };
 
-  const astronaut: BannerLayer = {
-    translateY: [0, 10],
-    scale: [1, 0.8, "easeOutCubic"],
+  const foreground: BannerLayer = {
+    image: "/banner-foreground.png",
+    translateY: [-10, 15],
+    scale: [1, 1.1, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
+  };
+
+  const overlay: BannerLayer = {
+    opacity: [0, 0.9],
+    shouldAlwaysCompleteAnimation: true,
+    expanded: false,
     children: (
-      <Grid justify="flex-end" style={{ height: "100%" }}>
-        <Grid.Col span={4}>
-          <Container
-            style={{ height: "100%", display: "flex", paddingBottom: "50%" }}
-          >
-            <Image
-              src="/header-object.svg"
-              alt="Astronaut"
-              width={250}
-              height={250}
-            />
-          </Container>
-        </Grid.Col>
-      </Grid>
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          background:
+            "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)",
+        }}
+      />
     ),
   };
 
   return (
     <>
+      <ActionIcon
+        variant="light"
+        color={dark ? "yellow" : "blue"}
+        onClick={() => toggleColorScheme()}
+        className="themeButton"
+      >
+        {dark ? <IconSun size={24} /> : <IconMoonStars size={24} />}
+      </ActionIcon>
       <ParallaxBanner
-        layers={[background, astronaut, headline]}
+        layers={[background, foreground, headline, overlay]}
         style={{
-          height: "200vh",
+          height: "150vh",
           width: "100%",
         }}
       />

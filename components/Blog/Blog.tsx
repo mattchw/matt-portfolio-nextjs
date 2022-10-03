@@ -8,6 +8,7 @@ import {
   Text,
   Image,
 } from "@mantine/core";
+import { useEffect, useState } from "react";
 import BlogPost from "../../interfaces/blogPost";
 import styles from "./Blog.module.css";
 
@@ -16,8 +17,21 @@ export interface Props {
 }
 
 const Blog: React.FC<Props> = ({ posts }) => {
+  const [postNum, setPostNum] = useState(6);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setPostNum(4);
+      } else {
+        setPostNum(6);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const renderPosts = () => {
-    return posts.slice(0, 6).map((post) => {
+    return posts.slice(0, postNum).map((post) => {
       return (
         <Grid.Col sm={6} md={4} key={post.title} style={{ padding: 10 }}>
           <Card shadow="sm" p="lg" radius="md" withBorder>
@@ -52,8 +66,10 @@ const Blog: React.FC<Props> = ({ posts }) => {
   };
   return (
     <Container size="xl" px="xs" className={styles.blog}>
-      <Grid justify="center" align="center" className={styles.blogHeading}>
-        <h2>My Latest Blogs</h2>
+      <Grid justify="center" align="center">
+        <Grid className={styles.blogHeading}>
+          <h2>My Latest Blogs</h2>
+        </Grid>
       </Grid>
       <Grid>{renderPosts()}</Grid>
     </Container>
