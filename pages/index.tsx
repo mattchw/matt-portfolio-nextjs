@@ -48,8 +48,8 @@ const Home: NextPage = () => {
   const background: BannerLayer = {
     image: "header-background.svg",
     translateY: [0, 50],
-    opacity: [1, 0.5],
-    scale: [1.2, 1, "easeOutCubic"],
+    opacity: [0.9, 0.6],
+    scale: [1.15, 1, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
   };
 
