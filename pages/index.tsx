@@ -7,6 +7,8 @@ import {
   Container,
   ActionIcon,
   useMantineColorScheme,
+  createStyles,
+  MediaQuery,
 } from "@mantine/core";
 import { IconSun, IconMoonStars } from "@tabler/icons";
 import type { NextPage } from "next";
@@ -26,6 +28,42 @@ const Home: NextPage = () => {
   const [data, setData] = useState([]);
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const dark = colorScheme === "dark";
+
+  const useStyles = createStyles((theme) => ({
+    headlineFont: {
+      fontWeight: 300,
+      fontSize: 60,
+      lineHeight: 0.5,
+
+      [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+        fontSize: 50,
+      },
+
+      [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+        fontSize: 40,
+      },
+
+      [`@media (max-width: ${theme.breakpoints.xs}px)`]: {
+        fontSize: 30,
+      },
+    },
+    subHeadlineFont: {
+      fontSize: 16,
+      [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+        fontSize: 14,
+      },
+
+      [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+        fontSize: 12,
+      },
+
+      [`@media (max-width: ${theme.breakpoints.xs}px)`]: {
+        fontSize: 8,
+      },
+    },
+  }));
+
+  const { classes } = useStyles();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,12 +105,12 @@ const Home: NextPage = () => {
             "Hi, I'm a Software Engineer",
             4000,
           ]}
-          style={{ fontWeight: 300, fontSize: 60, lineHeight: 0.5 }}
           wrapper="h1"
           speed={30}
           repeat={Infinity}
+          className={classes.headlineFont}
         />
-        <Text size="md">
+        <Text className={classes.subHeadlineFont}>
           I code and explore new technologies, and I love what I do.
         </Text>
       </Center>
