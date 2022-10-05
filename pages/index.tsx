@@ -84,7 +84,7 @@ const Home: NextPage = () => {
   }, []);
 
   const background: BannerLayer = {
-    image: "header-background.svg",
+    image: "header-background.png",
     translateY: [0, 50],
     opacity: [0.9, 0.6],
     scale: [1.15, 1, "easeOutCubic"],
