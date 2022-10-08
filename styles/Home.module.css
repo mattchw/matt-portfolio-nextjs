@@ -1,52 +1,6 @@
-.parallax {
-  display: flex;
-  justify-content: center;
-}
-
-.parallaxBackground {
-  background: url("../public/header-background.svg") repeat fixed 100%;
-
-  /* Full height */
-  height: 300vh;
-  width: 100vw;
-
-  /* filter: blur(5px); */
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.parallaxObject {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  width: 30%;
-  top: 50%;
-  padding: 100px;
-}
-
 .content {
   display: flex;
   flex-direction: column;
 
   height: 100vh;
-}
-
-.heading {
-  margin: 0;
-  position: absolute;
-  top: 30%;
-  left: 30%;
-}
-
-.headingText {
-  margin: 10px 0;
-  font-size: 60px;
-}
-
-.headingCaption {
-  margin: 0;
-  font-size: 20px;
 }
