@@ -4,8 +4,19 @@
   padding-bottom: 50px;
 }
 
+.resumeLeft {
+  margin: 0;
+}
+
 .resumeLeftTitle {
   border-left: 3px solid #025f89;
   padding-left: 12px;
   margin: 0;
+}
+
+.resumeLeftTitleSM {
+  border-bottom: 3px solid #025f89;
+  padding-bottom: 4px;
+  margin: 0 auto;
+  justify-content: center;
 }
