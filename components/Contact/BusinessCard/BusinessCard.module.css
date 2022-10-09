@@ -121,6 +121,11 @@
   justify-content: center;
   align-items: center;
   border: 5px solid #1080b4;
+  margin: 0 auto;
+}
+
+.circleImage {
+  width: 120px;
 }
 
 /* social links */
