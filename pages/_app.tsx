@@ -24,6 +24,15 @@ export default function App(props: AppProps) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
+        <meta property="og:url" content="mattwong.info" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Matt Wong" />
+        <meta name="twitter:card" content="summary" />
+        <meta
+          property="og:description"
+          content="Matthew Wong Personal Website"
+        />
+        <meta property="og:image" content={"/logo192.png"} />
       </Head>
 
       <ColorSchemeProvider
