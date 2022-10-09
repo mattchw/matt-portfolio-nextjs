@@ -8,7 +8,9 @@ import {
   Avatar,
   Group,
   createStyles,
+  useMantineTheme,
 } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import { Work, Education } from "../../interfaces";
 import styles from "./Resume.module.css";
 import { IconBriefcase, IconSchool } from "@tabler/icons";
@@ -62,6 +64,9 @@ const useStyles = createStyles((theme) => ({
 
 const Resume: React.FC<Props> = ({ data: { work, education } }) => {
   const { classes } = useStyles();
+  const smMedia = useMediaQuery(
+    `(min-width: ${useMantineTheme().breakpoints.sm}px)`
+  );
   const renderWork = () => {
     return (
       <Accordion variant="contained" defaultValue="work" classNames={classes}>
@@ -138,22 +143,38 @@ const Resume: React.FC<Props> = ({ data: { work, education } }) => {
   return (
     <Container size="lg" px="xs" className={styles.about}>
       <Grid justify="center" className={styles.resumeContainer}>
-        <Grid.Col span={3}>
-          <Grid className={styles.resumeLeftTitle}>
-            <IconBriefcase size={24} className="headingIcon" />
-            <span>Work</span>
+        <Grid.Col xs={12} sm={3}>
+          <Grid className={styles.resumeLeft}>
+            <Grid
+              className={
+                smMedia ? styles.resumeLeftTitle : styles.resumeLeftTitleSM
+              }
+            >
+              <IconBriefcase size={24} className="headingIcon" />
+              <span>Work</span>
+            </Grid>
           </Grid>
         </Grid.Col>
-        <Grid.Col span={9}>{renderWork()}</Grid.Col>
+        <Grid.Col xs={12} sm={9}>
+          {renderWork()}
+        </Grid.Col>
       </Grid>
       <Grid justify="center" className={styles.resumeContainer}>
-        <Grid.Col span={3}>
-          <Grid className={styles.resumeLeftTitle}>
-            <IconSchool size={24} className="headingIcon" />
-            <span>Education</span>
+        <Grid.Col xs={12} sm={3}>
+          <Grid className={styles.resumeLeft}>
+            <Grid
+              className={
+                smMedia ? styles.resumeLeftTitle : styles.resumeLeftTitleSM
+              }
+            >
+              <IconSchool size={24} className="headingIcon" />
+              <span>Education</span>
+            </Grid>
           </Grid>
         </Grid.Col>
-        <Grid.Col span={9}>{renderEducation()}</Grid.Col>
+        <Grid.Col xs={12} sm={9}>
+          {renderEducation()}
+        </Grid.Col>
       </Grid>
     </Container>
   );

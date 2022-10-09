@@ -13,22 +13,27 @@ import { IconCode } from "@tabler/icons";
 import { quotes } from "../../constants/quotes";
 import { useEffect, useState } from "react";
 
+import VsDark from "prism-react-renderer/themes/vsDark";
+
 export interface Props {
   data: {
     title: string;
     description: string;
     skills: string[];
+    hobbies: string[];
   };
 }
 
-const About: React.FC<Props> = ({ data: { title, description, skills } }) => {
+const About: React.FC<Props> = ({
+  data: { title, description, skills, hobbies },
+}) => {
   const theme = useMantineTheme();
   const demoCode = `
 {
   "title": "${title}",
   "description": "${description}",
-  "skills": [
-    ${skills.map((skill) => `"${skill}"`).join(", ")}
+  "hobbies": [
+    ${hobbies.map((hobby) => `"${hobby}"`).join(", ")}
   ],
 }
   `;
@@ -71,7 +76,12 @@ const About: React.FC<Props> = ({ data: { title, description, skills } }) => {
           <Blockquote style={{ marginBottom: 20 }} cite={`- ${quote.cite}`}>
             {quote.quote}
           </Blockquote>
-          <Prism language="json" withLineNumbers colorScheme="dark">
+          <Prism
+            language="json"
+            withLineNumbers
+            colorScheme="dark"
+            getPrismTheme={(_theme, _colorScheme) => VsDark}
+          >
             {demoCode}
           </Prism>
           <Grid

@@ -1,18 +1,12 @@
 import {
   Center,
-  Grid,
-  Title,
   Text,
-  Divider,
-  Container,
   ActionIcon,
   useMantineColorScheme,
   createStyles,
-  MediaQuery,
 } from "@mantine/core";
 import { IconSun, IconMoonStars } from "@tabler/icons";
 import type { NextPage } from "next";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { BannerLayer } from "react-scroll-parallax/dist/components/ParallaxBanner/types";
@@ -163,7 +157,8 @@ const Home: NextPage = () => {
       <About
         data={{
           title: "About",
-          description: "I'm a software engineer",
+          description:
+            "A Software Engineer at Shopline in HK. Having worked at both frontend and backend positions for 2+ years, I am a self-driven fast learner with in-depth skills and expertise in designing, planning, developing and maintenance of software.",
           skills: [
             "Html",
             "Css",
@@ -174,6 +169,7 @@ const Home: NextPage = () => {
             "Ruby",
             "Golang",
           ],
+          hobbies: ["Drawing 🎨", "Guitar 🎸", "Reading 📚", "Gaming 🎮"],
         }}
       />
       <Resume
@@ -261,7 +257,16 @@ const Home: NextPage = () => {
             url: "",
             github: "https://github.com/mattchw/smart-bank",
             image: "SmartBank.png",
-            tags: ["Go", "Backend", "PostgreSQL"],
+            tags: [
+              {
+                name: "Go",
+                color: "blue",
+              },
+              {
+                name: "PostgreSQL",
+                color: "blue",
+              },
+            ],
           },
           {
             name: "UKChat",
@@ -270,7 +275,16 @@ const Home: NextPage = () => {
             image: "UKChat.png",
             url: "https://uk-chatroom.web.app/",
             github: "https://uk-chatroom.web.app/",
-            tags: ["React", "Firebase", "Frontend", "Backend"],
+            tags: [
+              {
+                name: "React",
+                color: "blue",
+              },
+              {
+                name: "Firebase",
+                color: "orange",
+              },
+            ],
           },
           {
             name: "Killer Queue",
@@ -278,7 +292,16 @@ const Home: NextPage = () => {
               "MERN stack application for shop/restaurant to organise queueing effectively",
             image: "KillerQueue.png",
             github: "https://github.com/mattchw/Killer-Queue",
-            tags: ["React", "MongoDB", "Frontend", "Backend"],
+            tags: [
+              {
+                name: "React",
+                color: "blue",
+              },
+              {
+                name: "MongoDB",
+                color: "teal",
+              },
+            ],
           },
           {
             name: "Polipedia",
@@ -286,7 +309,20 @@ const Home: NextPage = () => {
               "React/Redux web application with Spring Boot server showing political stances and background of celebrities in HK and US",
             image: "Polipedia.png",
             github: "https://github.com/mattchw/Polipedia",
-            tags: ["React", "Spring", "PostgreSQL", "Frontend", "Backend"],
+            tags: [
+              {
+                name: "React",
+                color: "blue",
+              },
+              {
+                name: "Spring",
+                color: "green",
+              },
+              {
+                name: "PostgreSQL",
+                color: "blue",
+              },
+            ],
           },
           {
             name: "Buy2Play",
@@ -294,7 +330,16 @@ const Home: NextPage = () => {
               "Nodejs with Express.js Web app for second-hand game trading",
             image: "Buy2Play.png",
             github: "https://github.com/mattchw/buy2play",
-            tags: ["Frontend", "Backend"],
+            tags: [
+              {
+                name: "Express",
+                color: "blue",
+              },
+              {
+                name: "MySQL",
+                color: "blue",
+              },
+            ],
           },
         ]}
       />

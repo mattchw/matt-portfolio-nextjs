@@ -4,7 +4,12 @@ interface Project {
   url?: string;
   github: string;
   image: string;
-  tags: string[];
+  tags: ProjectTag[];
+}
+
+interface ProjectTag {
+  name: string;
+  color: string;
 }
 
 export default Project;

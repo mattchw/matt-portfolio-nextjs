@@ -40,7 +40,7 @@ const BusinessCard: React.FC<Props> = ({
         <div className={styles.cardConatiner}>
           {/* <img src={logo} alt={styles.logo" style={{ width: 30 }} /> */}
           <div className={styles.circle}>
-            <img src={image} alt={name} />
+            <img src={image} alt={name} className={styles.circleImage} />
           </div>
 
           <div className={styles.cardName}>
