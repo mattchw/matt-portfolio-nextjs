@@ -4,61 +4,35 @@ import {
   Grid,
   Paper,
   Title,
+  Card,
+  Text,
+  Image,
+  Badge,
   createStyles,
+  Avatar,
+  Group,
 } from "@mantine/core";
 import Autoplay from "embla-carousel-autoplay";
 import styles from "./Project.module.css";
 import { Project as ProjectType } from "../../interfaces";
 import { Carousel } from "@mantine/carousel";
 import { useRef } from "react";
+import { IconBrandGithub } from "@tabler/icons";
 
 export interface Props {
   projects: ProjectType[];
 }
 
 const Project: React.FC<Props> = ({ projects }) => {
-  const renderProjects = () => {
-    return projects.map((item) => (
-      <Carousel.Slide key={item.name}>
-        <Card {...item} />
-      </Carousel.Slide>
-    ));
-  };
-
   const useStyles = createStyles((theme, _params, getRef) => ({
     card: {
-      height: 440,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-between",
-      alignItems: "flex-start",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      "&[data-active]": {
-        height: 500,
-      },
-    },
-
-    title: {
-      fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-      fontWeight: 900,
-      color: theme.white,
-      lineHeight: 1.2,
-      fontSize: 32,
-      marginTop: theme.spacing.xs,
-    },
-
-    category: {
-      color: theme.white,
-      opacity: 0.7,
-      fontWeight: 700,
-      textTransform: "uppercase",
+      height: 500,
     },
 
     controls: {
       ref: getRef("controls"),
       transition: "opacity 150ms ease",
-      opacity: 0,
+      opacity: 0.3,
     },
 
     control: {
@@ -68,7 +42,7 @@ const Project: React.FC<Props> = ({ projects }) => {
     },
 
     slide: {
-      height: 480,
+      height: 540,
     },
 
     root: {
@@ -94,26 +68,62 @@ const Project: React.FC<Props> = ({ projects }) => {
   const { classes } = useStyles();
   const autoplay = useRef(Autoplay({ delay: 5000 }));
 
-  function Card({ image, name, description }: ProjectType) {
+  const renderProjects = () => {
+    return projects.map((item) => (
+      <Carousel.Slide key={item.name}>
+        <ProjectCard {...item} />
+      </Carousel.Slide>
+    ));
+  };
+
+  const ProjectCard = ({
+    image,
+    name,
+    github,
+    description,
+    tags,
+  }: ProjectType) => {
     return (
-      <Paper
-        shadow="md"
+      <Card
+        shadow="sm"
         p="xl"
-        radius="md"
-        sx={{ backgroundImage: `url(/projects/${image})` }}
+        component="a"
+        target="_blank"
         className={classes.card}
       >
-        <div>
-          <Title order={3} className={classes.title}>
-            {name}
-          </Title>
-        </div>
-        <Button variant="white" color="dark">
-          Github
-        </Button>
-      </Paper>
+        <Card.Section>
+          <Image src={`/projects/${image}`} height={350} alt={name} />
+        </Card.Section>
+
+        <Group position="apart" mt="sm" mb="xs">
+          <Text weight={500}>{name}</Text>
+          <Group>
+            {tags.map((tag) => (
+              <Badge key={tag.name} color={tag.color} size="xs">
+                {tag.name}
+              </Badge>
+            ))}
+          </Group>
+        </Group>
+
+        <Text mt="xs" color="dimmed" size="sm" lineClamp={1}>
+          {description}
+        </Text>
+
+        <Group position="apart" mt="md" mb="xs">
+          <Button
+            variant="light"
+            leftIcon={<IconBrandGithub size={14} />}
+            component="a"
+            target="_blank"
+            href={github}
+          >
+            Github
+          </Button>
+        </Group>
+      </Card>
     );
-  }
+  };
 
   return (
     <Container size="xl" px="xs" className={styles.project}>
@@ -123,8 +133,11 @@ const Project: React.FC<Props> = ({ projects }) => {
         </Grid>
       </Grid>
       <Carousel
-        slideSize="33.333333%"
-        breakpoints={[{ maxWidth: "md", slideSize: "50%" }]}
+        slideSize="60%"
+        breakpoints={[
+          { maxWidth: "md", slideSize: "80%" },
+          { maxWidth: "sm", slideSize: "100%" },
+        ]}
         slideGap="sm"
         align="center"
         slidesToScroll={1}
