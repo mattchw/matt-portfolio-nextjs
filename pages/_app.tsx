@@ -10,6 +10,10 @@ import { ParallaxProvider } from "react-scroll-parallax";
 import "../styles/globals.css";
 import { useState } from "react";
 
+import ReactGA from "react-ga";
+ReactGA.initialize(process.env.GOOGLE_ANALYTICS_TRACKING_ID || "");
+ReactGA.pageview(window.location.pathname);
+
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
   const [colorScheme, setColorScheme] = useState<ColorScheme>("dark");
