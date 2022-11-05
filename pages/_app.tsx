@@ -19,7 +19,9 @@ export default function App(props: AppProps) {
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
   useEffect(() => {
-    ReactGA.initialize(process.env.GOOGLE_ANALYTICS_TRACKING_ID || "");
+    ReactGA.initialize(
+      process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID || ""
+    );
     ReactGA.pageview(window.location.pathname);
   }, []);
 
