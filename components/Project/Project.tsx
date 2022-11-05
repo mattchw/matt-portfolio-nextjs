@@ -18,6 +18,7 @@ import { Project as ProjectType } from "../../interfaces";
 import { Carousel } from "@mantine/carousel";
 import { useRef } from "react";
 import { IconBrandGithub } from "@tabler/icons";
+import Link from "next/link";
 
 export interface Props {
   projects: ProjectType[];
@@ -111,15 +112,11 @@ const Project: React.FC<Props> = ({ projects }) => {
         </Text>
 
         <Group position="apart" mt="md" mb="xs">
-          <Button
-            variant="light"
-            leftIcon={<IconBrandGithub size={14} />}
-            component="a"
-            target="_blank"
-            href={github}
-          >
-            Github
-          </Button>
+          <Link href={github}>
+            <Button variant="light" leftIcon={<IconBrandGithub size={14} />}>
+              Github
+            </Button>
+          </Link>
         </Group>
       </Card>
     );
