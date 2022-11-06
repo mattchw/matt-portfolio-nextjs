@@ -26,7 +26,7 @@ const BusinessCard: React.FC<Props> = ({
       return networks.map(function (network) {
         return (
           <li key={network.name}>
-            <a href={network.url}>
+            <a href={network.url} target="_blank" rel="noreferrer">
               <SocialNetwork name={network.name} size={24} />
             </a>
           </li>

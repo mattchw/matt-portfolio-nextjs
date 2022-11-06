@@ -99,16 +99,7 @@ const Contact: React.FC<Props> = ({ socials }) => {
           location={"Hong Kong"}
           image={"/profilepic-about.svg"}
           email="matthew.chohin@gmail.com"
-          networks={[
-            {
-              name: "LinkedIn",
-              url: "https://www.linkedin.com/in/mattwonginfo/",
-            },
-            {
-              name: "GitHub",
-              url: "https://www.linkedin.com/in/mattwonginfo/",
-            },
-          ]}
+          networks={socials}
         />
       </Grid>
       <Grid justify="center" align="center" style={{ paddingTop: 20 }}>

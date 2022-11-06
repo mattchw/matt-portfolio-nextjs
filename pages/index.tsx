@@ -347,8 +347,12 @@ const Home: NextPage = () => {
       <Contact
         socials={[
           {
-            name: "Github",
-            url: "http://github.com/mattchw",
+            name: "GitHub",
+            url: "https://github.com/mattchw",
+          },
+          {
+            name: "LinkedIn",
+            url: "https://linkedin.com/in/mattchw",
           },
         ]}
       />
