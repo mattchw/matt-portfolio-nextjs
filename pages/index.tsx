@@ -156,9 +156,10 @@ const Home: NextPage = () => {
       />
       <About
         data={{
-          title: "About",
+          title: "Software Engineer at Shopline",
+          location: "Hong Kong",
           description:
-            "A Software Engineer at Shopline in HK. Having worked at both frontend and backend positions for 2+ years, I am a self-driven fast learner with in-depth skills and expertise in designing, planning, developing and maintenance of software.",
+            "Having worked at both frontend and backend positions for 2+ years, I am a self-driven fast learner with in-depth skills and expertise in designing, planning, developing and maintenance of software.",
           skills: [
             "Html",
             "Css",
