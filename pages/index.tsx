@@ -274,7 +274,7 @@ const Home: NextPage = () => {
               "Slack-like React application with Firebase for Hongkongers to talk about UK topics in an organized way",
             image: "UKChat.png",
             url: "https://uk-chatroom.web.app/",
-            github: "https://uk-chatroom.web.app/",
+            github: "https://github.com/mattchw/UKChat",
             tags: [
               {
                 name: "React",
