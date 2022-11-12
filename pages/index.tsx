@@ -156,9 +156,10 @@ const Home: NextPage = () => {
       />
       <About
         data={{
-          title: "About",
+          title: "Software Engineer 🧑‍💻 at Shopline",
+          location: "Hong Kong 🇭🇰",
           description:
-            "A Software Engineer at Shopline in HK. Having worked at both frontend and backend positions for 2+ years, I am a self-driven fast learner with in-depth skills and expertise in designing, planning, developing and maintenance of software.",
+            "Having worked at both frontend and backend positions for 2+ years, I am a self-driven fast learner with in-depth skills and expertise in designing, planning, developing and maintenance of software.",
           skills: [
             "Html",
             "Css",
@@ -166,8 +167,8 @@ const Home: NextPage = () => {
             "Typescript",
             "Nodejs",
             "Python",
-            "Ruby",
             "Golang",
+            "Ruby",
           ],
           hobbies: ["Drawing 🎨", "Guitar 🎸", "Reading 📚", "Gaming 🎮"],
         }}
@@ -274,7 +275,7 @@ const Home: NextPage = () => {
               "Slack-like React application with Firebase for Hongkongers to talk about UK topics in an organized way",
             image: "UKChat.png",
             url: "https://uk-chatroom.web.app/",
-            github: "https://uk-chatroom.web.app/",
+            github: "https://github.com/mattchw/UKChat",
             tags: [
               {
                 name: "React",
@@ -347,8 +348,12 @@ const Home: NextPage = () => {
       <Contact
         socials={[
           {
-            name: "Github",
-            url: "http://github.com/mattchw",
+            name: "GitHub",
+            url: "https://github.com/mattchw",
+          },
+          {
+            name: "LinkedIn",
+            url: "https://linkedin.com/in/mattchw",
           },
         ]}
       />

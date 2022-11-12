@@ -80,6 +80,7 @@ const Project: React.FC<Props> = ({ projects }) => {
   const ProjectCard = ({
     image,
     name,
+    url,
     github,
     description,
     tags,
@@ -91,6 +92,7 @@ const Project: React.FC<Props> = ({ projects }) => {
         component="a"
         target="_blank"
         className={classes.card}
+        href={url ? url : undefined}
       >
         <Card.Section>
           <Image src={`/projects/${image}`} height={350} alt={name} />

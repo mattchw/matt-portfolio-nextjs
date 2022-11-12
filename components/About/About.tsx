@@ -18,6 +18,7 @@ import VsDark from "prism-react-renderer/themes/vsDark";
 export interface Props {
   data: {
     title: string;
+    location: string;
     description: string;
     skills: string[];
     hobbies: string[];
@@ -25,12 +26,13 @@ export interface Props {
 }
 
 const About: React.FC<Props> = ({
-  data: { title, description, skills, hobbies },
+  data: { title, location, description, skills, hobbies },
 }) => {
   const theme = useMantineTheme();
   const demoCode = `
 {
   "title": "${title}",
+  "location": "${location}",
   "description": "${description}",
   "hobbies": [
     ${hobbies.map((hobby) => `"${hobby}"`).join(", ")}
