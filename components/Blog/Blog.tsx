@@ -36,7 +36,7 @@ const Blog: React.FC<Props> = ({ posts }) => {
         <Grid.Col sm={6} md={4} key={post.title} style={{ padding: 10 }}>
           <Card shadow="sm" p="lg" radius="md" withBorder>
             <Card.Section component="a" href={post.link} target="_blank">
-              <Image src={post.thumbnail} height={160} alt={post.title} />
+              <Image src={post.thumbnail} height={200} alt={post.title} />
             </Card.Section>
 
             <Group position="apart" mt="md" mb="xs">
@@ -53,7 +53,7 @@ const Blog: React.FC<Props> = ({ posts }) => {
               <Badge size="sm">{post.pubDate.slice(0, 10)}</Badge>
             </Group>
 
-            <Text size="sm" color="dimmed" lineClamp={3}>
+            <Text size="sm" color="dimmed" lineClamp={2}>
               {post.description
                 .replace(/<figure>.*?<\/figure>\s?/g, "")
                 .replace(/<\/?[^>]+(>|$)/g, "")
