@@ -11,6 +11,7 @@ import "../styles/globals.css";
 import { useEffect, useState } from "react";
 
 import ReactGA from "react-ga";
+import Script from "next/script";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -27,6 +28,25 @@ export default function App(props: AppProps) {
 
   return (
     <>
+      {/* Global Site Tag (gtag.js) - Google Analytics */}
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS4_MEASUREMENT_ID}`}
+      />
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS4_MEASUREMENT_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+        }}
+      />
       <Head>
         <title>Matt Wong</title>
         <meta
