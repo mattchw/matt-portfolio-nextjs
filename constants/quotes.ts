@@ -22,4 +22,9 @@ export const quotes = [
     quote: "He who has a why to live can bear almost any how.",
     cite: "Friedrich Nietzsche",
   },
+  {
+    quote:
+      "You have to fight to reach your dream. You have to sacrifice and work hard for it.",
+    cite: "Lionel Messi",
+  },
 ];
