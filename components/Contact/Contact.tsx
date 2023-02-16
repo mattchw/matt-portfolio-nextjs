@@ -89,7 +89,7 @@ const Contact: React.FC<Props> = ({ socials }) => {
     e.preventDefault();
   };
   return (
-    <Container className={styles.contact}>
+    <Container size="xl" px="xs" className={styles.contact}>
       <Grid justify="center" align="center" className={styles.contactHeading}>
         <h2>Contact</h2>
       </Grid>
