@@ -63,7 +63,7 @@ const About: React.FC<Props> = ({
         <Grid.Col md={12} lg={4}>
           <div className={styles.aboutImgCircle}>
             <Image
-              src="/profilepic-about.svg"
+              src="/profilepic.jpg"
               alt="Profile pic"
               width={250}
               height={250}
