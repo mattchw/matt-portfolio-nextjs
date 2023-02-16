@@ -128,7 +128,7 @@ const Project: React.FC<Props> = ({ projects }) => {
     <Container size="xl" px="xs" className={styles.project}>
       <Grid justify="center" align="center">
         <Grid className={styles.projectHeading}>
-          <h2>Some of My Works</h2>
+          <h2>My Works</h2>
         </Grid>
       </Grid>
       <Carousel
