@@ -58,12 +58,12 @@ const About: React.FC<Props> = ({
     ));
   };
   return (
-    <Container size="lg" px="xs" className={styles.about}>
+    <Container size="xl" px="xs" className={styles.about}>
       <Grid justify="center" align="center" className={styles.aboutContainer}>
         <Grid.Col md={12} lg={4}>
           <div className={styles.aboutImgCircle}>
             <Image
-              src="/profilepic-about.svg"
+              src="/profilepic.jpg"
               alt="Profile pic"
               width={250}
               height={250}

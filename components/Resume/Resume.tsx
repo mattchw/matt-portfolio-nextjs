@@ -141,7 +141,7 @@ const Resume: React.FC<Props> = ({ data: { work, education } }) => {
     );
   };
   return (
-    <Container size="lg" px="xs" className={styles.about}>
+    <Container size="xl" px="xs" className={styles.about}>
       <Grid justify="center" className={styles.resumeContainer}>
         <Grid.Col xs={12} sm={3}>
           <Grid className={styles.resumeLeft}>
