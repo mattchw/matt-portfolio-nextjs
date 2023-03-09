@@ -16,13 +16,19 @@ import BusinessCard from "./BusinessCard/BusinessCard";
 import { IconAt, IconCheck, IconX } from "@tabler/icons";
 
 export interface Props {
+  info: {
+    name: string;
+    email: string;
+    location: string;
+    image: string;
+  };
   socials: {
     name: string;
     url: string;
   }[];
 }
 
-const Contact: React.FC<Props> = ({ socials }) => {
+const Contact: React.FC<Props> = ({ info, socials }) => {
   const [values, setValues] = useState({
     "form-name": "mattwong.info",
     name: "",
@@ -95,10 +101,10 @@ const Contact: React.FC<Props> = ({ socials }) => {
       </Grid>
       <Grid justify="center" align="center">
         <BusinessCard
-          name={"Matt Wong"}
-          location={"Hong Kong"}
-          image={"/profilepic-about.svg"}
-          email="matthew.chohin@gmail.com"
+          name={info.name}
+          location={info.location}
+          image={info.image}
+          email={info.email}
           networks={socials}
         />
       </Grid>
