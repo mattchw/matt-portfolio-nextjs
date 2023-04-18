@@ -37,7 +37,14 @@ const Home: NextPage = () => {
       <ActionIcon
         variant="light"
         color={dark ? "yellow" : "blue"}
-        onClick={() => toggleColorScheme()}
+        onClick={() => {
+          if (dark) {
+            localStorage.setItem("theme", "light");
+          } else {
+            localStorage.setItem("theme", "dark");
+          }
+          toggleColorScheme();
+        }}
         className="themeButton"
       >
         {dark ? <IconSun size={24} /> : <IconMoonStars size={24} />}
