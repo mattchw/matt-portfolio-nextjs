@@ -20,6 +20,13 @@ export default function App(props: AppProps) {
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
   useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    if (theme && theme !== colorScheme) {
+      setColorScheme(theme as ColorScheme);
+    }
+  }, [colorScheme]);
+
+  useEffect(() => {
     ReactGA.initialize(
       process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID || ""
     );

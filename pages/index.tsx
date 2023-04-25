@@ -37,7 +37,14 @@ const Home: NextPage = () => {
       <ActionIcon
         variant="light"
         color={dark ? "yellow" : "blue"}
-        onClick={() => toggleColorScheme()}
+        onClick={() => {
+          if (dark) {
+            localStorage.setItem("theme", "light");
+          } else {
+            localStorage.setItem("theme", "dark");
+          }
+          toggleColorScheme();
+        }}
         className="themeButton"
       >
         {dark ? <IconSun size={24} /> : <IconMoonStars size={24} />}
@@ -147,6 +154,32 @@ const Home: NextPage = () => {
       />
       <Project
         projects={[
+          {
+            name: "M.A.D. Matt",
+            description:
+              "A chatbot version of myself, with all of my Notion knowledge",
+            url: "https://mad-matt-ai.vercel.app/",
+            github: "https://github.com/mattchw/mad-matt-ai",
+            image: "MadMatt.png",
+            tags: [
+              {
+                name: "Typescript",
+                color: "blue",
+              },
+              {
+                name: "Next.js",
+                color: "gray",
+              },
+              {
+                name: "OpenAI",
+                color: "teal",
+              },
+              {
+                name: "Pinecone",
+                color: "blue",
+              },
+            ],
+          },
           {
             name: "Smart Bank",
             description: "Backend web service for banking system using Go",
