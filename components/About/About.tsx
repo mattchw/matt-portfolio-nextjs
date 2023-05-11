@@ -96,7 +96,7 @@ const About: React.FC<Props> = ({
               <span>Code Skills</span>
             </Grid>
           </Grid>
-          <Grid>{renderSkills()}</Grid>
+          <Grid gutter="xl">{renderSkills()}</Grid>
         </Grid.Col>
       </Grid>
     </Container>
