@@ -48,7 +48,7 @@ const About: React.FC<Props> = ({
 
   const renderSkills = () => {
     return skills.map((skill, index) => (
-      <Grid.Col key={index} span={3} style={{ textAlign: "center" }}>
+      <Grid.Col key={index} span={4} style={{ textAlign: "center" }}>
         <Skill
           name={skill}
           color={theme.colorScheme === "dark" ? theme.white : theme.black}
