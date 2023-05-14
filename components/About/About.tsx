@@ -14,6 +14,7 @@ import { quotes } from "../../constants/quotes";
 import { useEffect, useState } from "react";
 
 import VsDark from "prism-react-renderer/themes/vsDark";
+import VsLight from "prism-react-renderer/themes/vsLight";
 
 export interface Props {
   data: {
@@ -81,8 +82,9 @@ const About: React.FC<Props> = ({
           <Prism
             language="json"
             withLineNumbers
-            colorScheme="dark"
-            getPrismTheme={(_theme, _colorScheme) => VsDark}
+            getPrismTheme={(_theme, _colorScheme) =>
+              theme.colorScheme === "dark" ? VsDark : VsLight
+            }
           >
             {demoCode}
           </Prism>
