@@ -1,10 +1,16 @@
-import { Center, Text, createStyles } from "@mantine/core";
+import {
+  Center,
+  Text,
+  createStyles,
+  useMantineColorScheme,
+} from "@mantine/core";
 import styles from "./Banner.module.css";
 import { BannerLayer } from "react-scroll-parallax/dist/components/ParallaxBanner/types";
 import { ParallaxBanner } from "react-scroll-parallax";
 import { TypeAnimation } from "react-type-animation";
 
 const Banner: React.FC<{}> = () => {
+  const { colorScheme } = useMantineColorScheme();
   const useStyles = createStyles((theme) => ({
     headlineFont: {
       fontWeight: 300,
@@ -42,8 +48,11 @@ const Banner: React.FC<{}> = () => {
   const { classes } = useStyles();
 
   const background: BannerLayer = {
-    image: "header-background.png",
-    translateY: [0, 50],
+    image:
+      colorScheme === "dark"
+        ? "header-background.png"
+        : "header-background-white.png",
+    translateY: [5, 50],
     opacity: [0.9, 0.6],
     scale: [1.15, 1, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
@@ -76,7 +85,10 @@ const Banner: React.FC<{}> = () => {
   };
 
   const foreground: BannerLayer = {
-    image: "/banner-foreground.png",
+    image:
+      colorScheme === "dark"
+        ? "/banner-foreground.png"
+        : "/banner-foreground-white.png",
     translateY: [-10, 15],
     scale: [1, 1.1, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
