@@ -8,6 +8,7 @@ import Resume from "../components/Resume/Resume";
 import Project from "../components/Project/Project";
 import Blog from "../components/Blog/Blog";
 import Contact from "../components/Contact/Contact";
+import Footer from "../components/Footer/Footer";
 
 const Home: NextPage = () => {
   const [data, setData] = useState([]);
@@ -51,7 +52,7 @@ const Home: NextPage = () => {
   );
 
   const addSectionRef = useCallback(
-    (id: string, ref: (node?: Element | null | undefined) => void) => {
+    (id: string, ref: React.MutableRefObject<any>) => {
       setSectionRefs((prevRefs: any) => {
         // Ensure the ref is not already in the array
         if (!prevRefs.some((r: any) => r.id === id)) {
@@ -358,6 +359,7 @@ const Home: NextPage = () => {
         addSectionRef={addSectionRef}
         onVisibilityChange={handleVisibilityChange}
       />
+      <Footer />
     </>
   );
 };

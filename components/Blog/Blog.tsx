@@ -12,15 +12,12 @@ import { useEffect, useState } from "react";
 import BlogPost from "../../interfaces/blogPost";
 import styles from "./Blog.module.css";
 
-import { useInView } from "react-intersection-observer";
+import { useInView } from "../../hooks/useInView";
 
 export interface Props {
   id: string;
   posts: BlogPost[];
-  addSectionRef: (
-    id: string,
-    ref: (node?: Element | null | undefined) => void
-  ) => void;
+  addSectionRef: (id: string, ref: React.MutableRefObject<any>) => void;
   onVisibilityChange: (id: string, visible: boolean) => void;
 }
 
@@ -30,7 +27,7 @@ const Blog: React.FC<Props> = ({
   addSectionRef,
   onVisibilityChange,
 }) => {
-  const { ref, inView } = useInView();
+  const { ref, visible } = useInView();
   const [postNum, setPostNum] = useState(6);
 
   useEffect(() => {
@@ -46,14 +43,14 @@ const Blog: React.FC<Props> = ({
   }, []);
 
   useEffect(() => {
-    if (ref) {
+    if (ref.current) {
       addSectionRef(id, ref);
     }
   }, [ref, addSectionRef, id]);
 
   useEffect(() => {
-    onVisibilityChange(id, inView);
-  }, [inView, onVisibilityChange, id]);
+    onVisibilityChange(id, visible);
+  }, [visible, onVisibilityChange, id]);
 
   const renderPosts = () => {
     return posts.slice(0, postNum).map((post) => {

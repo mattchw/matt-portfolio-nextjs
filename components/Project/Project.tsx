@@ -17,15 +17,12 @@ import { useEffect, useRef } from "react";
 import { IconBrandGithub } from "@tabler/icons";
 import Link from "next/link";
 
-import { useInView } from "react-intersection-observer";
+import { useInView } from "../../hooks/useInView";
 
 export interface Props {
   id: string;
   projects: ProjectType[];
-  addSectionRef: (
-    id: string,
-    ref: (node?: Element | null | undefined) => void
-  ) => void;
+  addSectionRef: (id: string, ref: React.MutableRefObject<any>) => void;
   onVisibilityChange: (id: string, visible: boolean) => void;
 }
 
@@ -35,7 +32,7 @@ const Project: React.FC<Props> = ({
   addSectionRef,
   onVisibilityChange,
 }) => {
-  const { ref, inView } = useInView();
+  const { ref, visible } = useInView();
   const useStyles = createStyles((theme, _params, getRef) => ({
     card: {
       height: 500,
@@ -81,14 +78,14 @@ const Project: React.FC<Props> = ({
   const autoplay = useRef(Autoplay({ delay: 5000 }));
 
   useEffect(() => {
-    if (ref) {
+    if (ref.current) {
       addSectionRef(id, ref);
     }
   }, [ref, addSectionRef, id]);
 
   useEffect(() => {
-    onVisibilityChange(id, inView);
-  }, [inView, onVisibilityChange, id]);
+    onVisibilityChange(id, visible);
+  }, [visible, onVisibilityChange, id]);
 
   const renderProjects = () => {
     return projects.map((item) => (

@@ -12,7 +12,7 @@ import Skill from "./Skill/Skill";
 import { IconCode } from "@tabler/icons";
 import { quotes } from "../../constants/quotes";
 import { useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
+import { useInView } from "../../hooks/useInView";
 
 import VsDark from "prism-react-renderer/themes/vsDark";
 import VsLight from "prism-react-renderer/themes/vsLight";
@@ -27,10 +27,7 @@ export interface Props {
     skills: string[];
     hobbies: string[];
   };
-  addSectionRef: (
-    id: string,
-    ref: (node?: Element | null | undefined) => void
-  ) => void;
+  addSectionRef: (id: string, ref: React.MutableRefObject<any>) => void;
   onVisibilityChange: (id: string, visible: boolean) => void;
 }
 
@@ -41,7 +38,7 @@ const About: React.FC<Props> = ({
   onVisibilityChange,
 }) => {
   const theme = useMantineTheme();
-  const { ref, inView } = useInView();
+  const { ref, visible } = useInView();
 
   const demoCode = `
 {
@@ -61,14 +58,14 @@ const About: React.FC<Props> = ({
   }, []);
 
   useEffect(() => {
-    if (ref) {
+    if (ref.current) {
       addSectionRef(id, ref);
     }
   }, [ref, addSectionRef, id]);
 
   useEffect(() => {
-    onVisibilityChange(id, inView);
-  }, [inView, onVisibilityChange, id]);
+    onVisibilityChange(id, visible);
+  }, [visible, onVisibilityChange, id]);
 
   const renderSkills = () => {
     return skills.map((skill, index) => (

@@ -15,7 +15,7 @@ import { Work, Education } from "../../interfaces";
 import styles from "./Resume.module.css";
 import { IconBriefcase, IconSchool } from "@tabler/icons";
 
-import { useInView } from "react-intersection-observer";
+import { useInView } from "../../hooks/useInView";
 import { useEffect } from "react";
 
 export interface Props {
@@ -24,10 +24,7 @@ export interface Props {
     work: Work[];
     education: Education[];
   };
-  addSectionRef: (
-    id: string,
-    ref: (node?: Element | null | undefined) => void
-  ) => void;
+  addSectionRef: (id: string, ref: React.MutableRefObject<any>) => void;
   onVisibilityChange: (id: string, visible: boolean) => void;
 }
 
@@ -77,21 +74,21 @@ const Resume: React.FC<Props> = ({
   addSectionRef,
   onVisibilityChange,
 }) => {
-  const { ref, inView } = useInView();
+  const { ref, visible } = useInView();
   const { classes } = useStyles();
   const smMedia = useMediaQuery(
     `(min-width: ${useMantineTheme().breakpoints.sm}px)`
   );
 
   useEffect(() => {
-    if (ref) {
+    if (ref.current) {
       addSectionRef(id, ref);
     }
   }, [ref, addSectionRef, id]);
 
   useEffect(() => {
-    onVisibilityChange(id, inView);
-  }, [inView, onVisibilityChange, id]);
+    onVisibilityChange(id, visible);
+  }, [visible, onVisibilityChange, id]);
 
   const renderWork = () => {
     return (

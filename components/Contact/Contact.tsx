@@ -15,7 +15,7 @@ import { showNotification } from "@mantine/notifications";
 import BusinessCard from "./BusinessCard/BusinessCard";
 import { IconAt, IconCheck, IconX } from "@tabler/icons";
 
-import { useInView } from "react-intersection-observer";
+import { useInView } from "../../hooks/useInView";
 
 export interface Props {
   id: string;
@@ -29,10 +29,7 @@ export interface Props {
     name: string;
     url: string;
   }[];
-  addSectionRef: (
-    id: string,
-    ref: (node?: Element | null | undefined) => void
-  ) => void;
+  addSectionRef: (id: string, ref: React.MutableRefObject<any>) => void;
   onVisibilityChange: (id: string, visible: boolean) => void;
 }
 
@@ -43,7 +40,7 @@ const Contact: React.FC<Props> = ({
   addSectionRef,
   onVisibilityChange,
 }) => {
-  const { ref, inView } = useInView();
+  const { ref, visible } = useInView();
   const [values, setValues] = useState({
     "form-name": "mattwong.info",
     name: "",
@@ -52,14 +49,14 @@ const Contact: React.FC<Props> = ({
   });
 
   useEffect(() => {
-    if (ref) {
+    if (ref.current) {
       addSectionRef(id, ref);
     }
   }, [ref, addSectionRef, id]);
 
   useEffect(() => {
-    onVisibilityChange(id, inView);
-  }, [inView, onVisibilityChange, id]);
+    onVisibilityChange(id, visible);
+  }, [visible, onVisibilityChange, id]);
 
   const handleChange =
     (prop: string) => (event: { target: { value: string } }) => {
@@ -174,21 +171,6 @@ const Contact: React.FC<Props> = ({
             </Button>
           </Grid>
         </form>
-      </Grid>
-
-      <div
-        style={{ paddingTop: 40, display: "flex", justifyContent: "center" }}
-      >
-        <Divider style={{ width: "50%" }} />
-      </div>
-      <Grid
-        justify="center"
-        align="center"
-        style={{ marginTop: 40, marginBottom: 40 }}
-      >
-        <ul className={styles.copyright}>
-          <li>Copyright &copy; Matthew Wong {new Date().getFullYear()}</li>
-        </ul>
       </Grid>
     </Container>
   );

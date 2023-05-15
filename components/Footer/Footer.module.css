@@ -1,0 +1,38 @@
+.contact {
+  overflow: hidden;
+}
+
+.contact h2 {
+  margin: 12px 0;
+  border-bottom: 3px solid #025f89;
+  padding-top: 10px;
+}
+
+.contactHeading {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+/* copyright */
+.copyright {
+  margin: 0;
+  padding: 0;
+}
+.copyright li {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  line-height: 24px;
+}
+.ie .copyright li {
+  display: inline;
+}
+.copyright li:before {
+  content: "\2022";
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #095153;
+}
+.copyright li:first-child:before {
+  display: none;
+}
