@@ -1,8 +1,11 @@
 .contact {
   overflow: hidden;
 
-  padding-top: 100px;
-  padding-bottom: 20px;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .contact h2 {

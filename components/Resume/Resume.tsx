@@ -15,11 +15,20 @@ import { Work, Education } from "../../interfaces";
 import styles from "./Resume.module.css";
 import { IconBriefcase, IconSchool } from "@tabler/icons";
 
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
+
 export interface Props {
+  id: string;
   data: {
     work: Work[];
     education: Education[];
   };
+  addSectionRef: (
+    id: string,
+    ref: (node?: Element | null | undefined) => void
+  ) => void;
+  onVisibilityChange: (id: string, visible: boolean) => void;
 }
 
 const useStyles = createStyles((theme) => ({
@@ -62,11 +71,28 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const Resume: React.FC<Props> = ({ data: { work, education } }) => {
+const Resume: React.FC<Props> = ({
+  id,
+  data: { work, education },
+  addSectionRef,
+  onVisibilityChange,
+}) => {
+  const { ref, inView } = useInView();
   const { classes } = useStyles();
   const smMedia = useMediaQuery(
     `(min-width: ${useMantineTheme().breakpoints.sm}px)`
   );
+
+  useEffect(() => {
+    if (ref) {
+      addSectionRef(id, ref);
+    }
+  }, [ref, addSectionRef, id]);
+
+  useEffect(() => {
+    onVisibilityChange(id, inView);
+  }, [inView, onVisibilityChange, id]);
+
   const renderWork = () => {
     return (
       <Accordion variant="contained" defaultValue="work" classNames={classes}>
@@ -141,7 +167,7 @@ const Resume: React.FC<Props> = ({ data: { work, education } }) => {
     );
   };
   return (
-    <Container size="xl" px="xs" className={styles.about}>
+    <Container size="xl" px="xs" className={styles.resume} ref={ref}>
       <Grid justify="center" className={styles.resumeContainer}>
         <Grid.Col xs={12} sm={3}>
           <Grid className={styles.resumeLeft}>

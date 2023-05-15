@@ -2,29 +2,40 @@ import {
   Button,
   Container,
   Grid,
-  Paper,
-  Title,
   Card,
   Text,
   Image,
   Badge,
   createStyles,
-  Avatar,
   Group,
 } from "@mantine/core";
 import Autoplay from "embla-carousel-autoplay";
 import styles from "./Project.module.css";
 import { Project as ProjectType } from "../../interfaces";
 import { Carousel } from "@mantine/carousel";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { IconBrandGithub } from "@tabler/icons";
 import Link from "next/link";
 
+import { useInView } from "react-intersection-observer";
+
 export interface Props {
+  id: string;
   projects: ProjectType[];
+  addSectionRef: (
+    id: string,
+    ref: (node?: Element | null | undefined) => void
+  ) => void;
+  onVisibilityChange: (id: string, visible: boolean) => void;
 }
 
-const Project: React.FC<Props> = ({ projects }) => {
+const Project: React.FC<Props> = ({
+  id,
+  projects,
+  addSectionRef,
+  onVisibilityChange,
+}) => {
+  const { ref, inView } = useInView();
   const useStyles = createStyles((theme, _params, getRef) => ({
     card: {
       height: 500,
@@ -68,6 +79,16 @@ const Project: React.FC<Props> = ({ projects }) => {
 
   const { classes } = useStyles();
   const autoplay = useRef(Autoplay({ delay: 5000 }));
+
+  useEffect(() => {
+    if (ref) {
+      addSectionRef(id, ref);
+    }
+  }, [ref, addSectionRef, id]);
+
+  useEffect(() => {
+    onVisibilityChange(id, inView);
+  }, [inView, onVisibilityChange, id]);
 
   const renderProjects = () => {
     return projects.map((item) => (
@@ -125,7 +146,7 @@ const Project: React.FC<Props> = ({ projects }) => {
   };
 
   return (
-    <Container size="xl" px="xs" className={styles.project}>
+    <Container size="xl" px="xs" className={styles.project} ref={ref}>
       <Grid justify="center" align="center">
         <Grid className={styles.projectHeading}>
           <h2>My Works</h2>

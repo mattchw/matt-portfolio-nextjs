@@ -7,7 +7,7 @@ import {
   Textarea,
   TextInput,
 } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Contact.module.css";
 import { showNotification } from "@mantine/notifications";
 
@@ -15,7 +15,10 @@ import { showNotification } from "@mantine/notifications";
 import BusinessCard from "./BusinessCard/BusinessCard";
 import { IconAt, IconCheck, IconX } from "@tabler/icons";
 
+import { useInView } from "react-intersection-observer";
+
 export interface Props {
+  id: string;
   info: {
     name: string;
     email: string;
@@ -26,15 +29,38 @@ export interface Props {
     name: string;
     url: string;
   }[];
+  addSectionRef: (
+    id: string,
+    ref: (node?: Element | null | undefined) => void
+  ) => void;
+  onVisibilityChange: (id: string, visible: boolean) => void;
 }
 
-const Contact: React.FC<Props> = ({ info, socials }) => {
+const Contact: React.FC<Props> = ({
+  id,
+  info,
+  socials,
+  addSectionRef,
+  onVisibilityChange,
+}) => {
+  const { ref, inView } = useInView();
   const [values, setValues] = useState({
     "form-name": "mattwong.info",
     name: "",
     email: "",
     message: "",
   });
+
+  useEffect(() => {
+    if (ref) {
+      addSectionRef(id, ref);
+    }
+  }, [ref, addSectionRef, id]);
+
+  useEffect(() => {
+    onVisibilityChange(id, inView);
+  }, [inView, onVisibilityChange, id]);
+
   const handleChange =
     (prop: string) => (event: { target: { value: string } }) => {
       setValues({ ...values, [prop]: event.target.value });
@@ -95,7 +121,7 @@ const Contact: React.FC<Props> = ({ info, socials }) => {
     e.preventDefault();
   };
   return (
-    <Container size="xl" px="xs" className={styles.contact}>
+    <Container size="xl" px="xs" className={styles.contact} ref={ref}>
       <Grid justify="center" align="center" className={styles.contactHeading}>
         <h2>Contact</h2>
       </Grid>

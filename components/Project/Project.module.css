@@ -2,9 +2,11 @@
   background-size: cover;
 
   overflow: hidden;
+  min-height: 100vh;
 
-  padding-top: 50px;
-  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .project h2 {

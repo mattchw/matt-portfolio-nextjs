@@ -2,9 +2,11 @@
   background-size: cover;
 
   overflow: hidden;
+  min-height: 100vh;
 
-  padding-top: 100px;
-  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .blog h2 {
   margin: 12px 0;

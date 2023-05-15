@@ -12,11 +12,25 @@ import { useEffect, useState } from "react";
 import BlogPost from "../../interfaces/blogPost";
 import styles from "./Blog.module.css";
 
+import { useInView } from "react-intersection-observer";
+
 export interface Props {
+  id: string;
   posts: BlogPost[];
+  addSectionRef: (
+    id: string,
+    ref: (node?: Element | null | undefined) => void
+  ) => void;
+  onVisibilityChange: (id: string, visible: boolean) => void;
 }
 
-const Blog: React.FC<Props> = ({ posts }) => {
+const Blog: React.FC<Props> = ({
+  id,
+  posts,
+  addSectionRef,
+  onVisibilityChange,
+}) => {
+  const { ref, inView } = useInView();
   const [postNum, setPostNum] = useState(6);
 
   useEffect(() => {
@@ -30,6 +44,17 @@ const Blog: React.FC<Props> = ({ posts }) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    if (ref) {
+      addSectionRef(id, ref);
+    }
+  }, [ref, addSectionRef, id]);
+
+  useEffect(() => {
+    onVisibilityChange(id, inView);
+  }, [inView, onVisibilityChange, id]);
+
   const renderPosts = () => {
     return posts.slice(0, postNum).map((post) => {
       return (
@@ -65,7 +90,7 @@ const Blog: React.FC<Props> = ({ posts }) => {
     });
   };
   return (
-    <Container size="xl" px="xs" className={styles.blog}>
+    <Container size="xl" px="xs" className={styles.blog} ref={ref}>
       <Grid justify="center" align="center">
         <Grid className={styles.blogHeading}>
           <h2>My Latest Blogs</h2>

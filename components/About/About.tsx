@@ -12,11 +12,14 @@ import Skill from "./Skill/Skill";
 import { IconCode } from "@tabler/icons";
 import { quotes } from "../../constants/quotes";
 import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 import VsDark from "prism-react-renderer/themes/vsDark";
 import VsLight from "prism-react-renderer/themes/vsLight";
+import React from "react";
 
 export interface Props {
+  id: string;
   data: {
     title: string;
     location: string;
@@ -24,12 +27,22 @@ export interface Props {
     skills: string[];
     hobbies: string[];
   };
+  addSectionRef: (
+    id: string,
+    ref: (node?: Element | null | undefined) => void
+  ) => void;
+  onVisibilityChange: (id: string, visible: boolean) => void;
 }
 
 const About: React.FC<Props> = ({
+  id,
   data: { title, location, description, skills, hobbies },
+  addSectionRef,
+  onVisibilityChange,
 }) => {
   const theme = useMantineTheme();
+  const { ref, inView } = useInView();
+
   const demoCode = `
 {
   "title": "${title}",
@@ -47,6 +60,16 @@ const About: React.FC<Props> = ({
     setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
   }, []);
 
+  useEffect(() => {
+    if (ref) {
+      addSectionRef(id, ref);
+    }
+  }, [ref, addSectionRef, id]);
+
+  useEffect(() => {
+    onVisibilityChange(id, inView);
+  }, [inView, onVisibilityChange, id]);
+
   const renderSkills = () => {
     return skills.map((skill, index) => (
       <Grid.Col key={index} span={4} style={{ textAlign: "center" }}>
@@ -59,7 +82,7 @@ const About: React.FC<Props> = ({
     ));
   };
   return (
-    <Container size="xl" px="xs" className={styles.about}>
+    <Container size="xl" px="xs" className={styles.about} ref={ref}>
       <Grid justify="center" align="center" className={styles.aboutContainer}>
         <Grid.Col md={12} lg={4}>
           <div className={styles.aboutImgCircle}>
