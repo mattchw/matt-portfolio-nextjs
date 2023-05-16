@@ -18,6 +18,8 @@ import { IconBriefcase, IconSchool } from "@tabler/icons";
 import { useInView } from "../../hooks/useInView";
 import { useEffect } from "react";
 
+import { motion, useAnimation } from "framer-motion";
+
 export interface Props {
   id: string;
   data: {
@@ -75,6 +77,7 @@ const Resume: React.FC<Props> = ({
   onVisibilityChange,
 }) => {
   const { ref, visible } = useInView();
+  const animation = useAnimation();
   const { classes } = useStyles();
   const smMedia = useMediaQuery(
     `(min-width: ${useMantineTheme().breakpoints.sm}px)`
@@ -89,6 +92,22 @@ const Resume: React.FC<Props> = ({
   useEffect(() => {
     onVisibilityChange(id, visible);
   }, [visible, onVisibilityChange, id]);
+
+  useEffect(() => {
+    if (visible) {
+      animation.start({
+        scale: 1,
+        transition: {
+          type: "spring",
+          stiffness: 100,
+          damping: 8,
+        },
+      });
+    }
+    if (!visible) {
+      animation.start({ scale: 0 });
+    }
+  }, [visible, animation]);
 
   const renderWork = () => {
     return (
@@ -179,7 +198,9 @@ const Resume: React.FC<Props> = ({
           </Grid>
         </Grid.Col>
         <Grid.Col xs={12} sm={9}>
-          {renderWork()}
+          <motion.div ref={ref} animate={animation}>
+            {renderWork()}
+          </motion.div>
         </Grid.Col>
       </Grid>
       <Grid justify="center" className={styles.resumeContainer}>
@@ -196,7 +217,9 @@ const Resume: React.FC<Props> = ({
           </Grid>
         </Grid.Col>
         <Grid.Col xs={12} sm={9}>
-          {renderEducation()}
+          <motion.div ref={ref} animate={animation}>
+            {renderEducation()}
+          </motion.div>
         </Grid.Col>
       </Grid>
     </Container>

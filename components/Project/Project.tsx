@@ -18,6 +18,7 @@ import { IconBrandGithub } from "@tabler/icons";
 import Link from "next/link";
 
 import { useInView } from "../../hooks/useInView";
+import { motion, useAnimation } from "framer-motion";
 
 export interface Props {
   id: string;
@@ -33,6 +34,7 @@ const Project: React.FC<Props> = ({
   onVisibilityChange,
 }) => {
   const { ref, visible } = useInView();
+  const animation = useAnimation();
   const useStyles = createStyles((theme, _params, getRef) => ({
     card: {
       height: 500,
@@ -86,6 +88,21 @@ const Project: React.FC<Props> = ({
   useEffect(() => {
     onVisibilityChange(id, visible);
   }, [visible, onVisibilityChange, id]);
+
+  useEffect(() => {
+    if (visible) {
+      animation.start({
+        scale: 1,
+        opacity: 1,
+        transition: {
+          duration: 2,
+        },
+      });
+    }
+    if (!visible) {
+      animation.start({ scale: 0.8, opacity: 0 });
+    }
+  }, [visible, animation]);
 
   const renderProjects = () => {
     return projects.map((item) => (
@@ -149,24 +166,26 @@ const Project: React.FC<Props> = ({
           <h2>My Works</h2>
         </Grid>
       </Grid>
-      <Carousel
-        slideSize="60%"
-        breakpoints={[
-          { maxWidth: "md", slideSize: "80%" },
-          { maxWidth: "sm", slideSize: "100%" },
-        ]}
-        slideGap="sm"
-        align="center"
-        slidesToScroll={1}
-        withIndicators
-        loop
-        classNames={classes}
-        plugins={[autoplay.current]}
-        onMouseEnter={autoplay.current.stop}
-        onMouseLeave={autoplay.current.reset}
-      >
-        {renderProjects()}
-      </Carousel>
+      <motion.div ref={ref} animate={animation}>
+        <Carousel
+          slideSize="60%"
+          breakpoints={[
+            { maxWidth: "md", slideSize: "80%" },
+            { maxWidth: "sm", slideSize: "100%" },
+          ]}
+          slideGap="sm"
+          align="center"
+          slidesToScroll={1}
+          withIndicators
+          loop
+          classNames={classes}
+          plugins={[autoplay.current]}
+          onMouseEnter={autoplay.current.stop}
+          onMouseLeave={autoplay.current.reset}
+        >
+          {renderProjects()}
+        </Carousel>
+      </motion.div>
     </Container>
   );
 };

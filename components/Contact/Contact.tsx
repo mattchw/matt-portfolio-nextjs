@@ -16,6 +16,7 @@ import BusinessCard from "./BusinessCard/BusinessCard";
 import { IconAt, IconCheck, IconX } from "@tabler/icons";
 
 import { useInView } from "../../hooks/useInView";
+import { motion, useAnimation } from "framer-motion";
 
 export interface Props {
   id: string;
@@ -41,6 +42,8 @@ const Contact: React.FC<Props> = ({
   onVisibilityChange,
 }) => {
   const { ref, visible } = useInView();
+  const animation = useAnimation();
+  const animationAppear = useAnimation();
   const [values, setValues] = useState({
     "form-name": "mattwong.info",
     name: "",
@@ -57,6 +60,32 @@ const Contact: React.FC<Props> = ({
   useEffect(() => {
     onVisibilityChange(id, visible);
   }, [visible, onVisibilityChange, id]);
+
+  useEffect(() => {
+    if (visible) {
+      animation.start({
+        rotateY: 360,
+        transition: {
+          duration: 1, // Control the speed of the flip animation
+        },
+      });
+      animationAppear.start({
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 1,
+        },
+      });
+    } else {
+      animation.start({
+        rotateY: 0,
+      });
+      animationAppear.start({
+        opacity: 0,
+        y: 200,
+      });
+    }
+  }, [animation, animationAppear, visible]);
 
   const handleChange =
     (prop: string) => (event: { target: { value: string } }) => {
@@ -123,55 +152,63 @@ const Contact: React.FC<Props> = ({
         <h2>Contact</h2>
       </Grid>
       <Grid justify="center" align="center">
-        <BusinessCard
-          name={info.name}
-          location={info.location}
-          image={info.image}
-          email={info.email}
-          networks={socials}
-        />
+        <motion.div
+          ref={ref}
+          animate={animation}
+          style={{ transformOrigin: "center" }}
+        >
+          <BusinessCard
+            name={info.name}
+            location={info.location}
+            image={info.image}
+            email={info.email}
+            networks={socials}
+          />
+        </motion.div>
       </Grid>
       <Grid justify="center" align="center" style={{ paddingTop: 20 }}>
         <h4>Have a question or want to work together?</h4>
       </Grid>
-      <Grid justify="center" align="center" style={{ margin: 0 }}>
-        <form onSubmit={handleSubmit} style={{ width: "100%" }}>
-          <TextInput
-            required
-            label="Name"
-            value={values.name}
-            onChange={handleChange("name")}
-            placeholder="Your name"
-          />
-          <TextInput
-            required
-            label="Email"
-            value={values.email}
-            onChange={handleChange("email")}
-            placeholder="Your email"
-            icon={<IconAt size={14} />}
-          />
-          <Textarea
-            label="Message"
-            minRows={4}
-            value={values.message}
-            onChange={handleChange("message")}
-            placeholder="Anything you want to say to me 😊"
-          />
-          <Grid
-            justify="center"
-            align="center"
-            style={{ margin: 0, paddingTop: 20 }}
-          >
-            <Button
-              type="submit"
-              style={{ color: "#e2e2e2", fontWeight: "bold" }}
+      <motion.div ref={ref} animate={animationAppear}>
+        <Grid justify="center" align="center" style={{ margin: 0 }}>
+          <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+            <TextInput
+              required
+              label="Name"
+              value={values.name}
+              onChange={handleChange("name")}
+              placeholder="Your name"
+            />
+            <TextInput
+              required
+              label="Email"
+              value={values.email}
+              onChange={handleChange("email")}
+              placeholder="Your email"
+              icon={<IconAt size={14} />}
+            />
+            <Textarea
+              label="Message"
+              minRows={4}
+              value={values.message}
+              onChange={handleChange("message")}
+              placeholder="Anything you want to say to me 😊"
+            />
+            <Grid
+              justify="center"
+              align="center"
+              style={{ margin: 0, paddingTop: 20 }}
             >
-              Send
-            </Button>
-          </Grid>
-        </form>
-      </Grid>
+              <Button
+                type="submit"
+                style={{ color: "#e2e2e2", fontWeight: "bold" }}
+              >
+                Send
+              </Button>
+            </Grid>
+          </form>
+        </Grid>
+      </motion.div>
     </Container>
   );
 };
