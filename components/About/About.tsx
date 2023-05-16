@@ -17,6 +17,8 @@ import { useInView } from "../../hooks/useInView";
 import VsDark from "prism-react-renderer/themes/vsDark";
 import VsLight from "prism-react-renderer/themes/vsLight";
 import React from "react";
+import { useParallax } from "react-scroll-parallax";
+import { useMediaQuery } from "@mantine/hooks";
 
 export interface Props {
   id: string;
@@ -40,6 +42,10 @@ const About: React.FC<Props> = ({
   const theme = useMantineTheme();
   const { ref, visible } = useInView();
 
+  const smMedia = useMediaQuery(
+    `(min-width: ${useMantineTheme().breakpoints.sm}px)`
+  );
+
   const demoCode = `
 {
   "title": "${title}",
@@ -50,6 +56,22 @@ const About: React.FC<Props> = ({
   ],
 }
   `;
+
+  const cloud = useParallax<HTMLDivElement>({
+    easing: "easeOutQuad",
+    translateX: [0, -3000],
+    translateY: [1000, -2000],
+    scale: [30, 10, "easeOutCubic"],
+    opacity: [1, 0],
+  });
+
+  const cloud2 = useParallax<HTMLDivElement>({
+    easing: "easeOutQuad",
+    translateX: [0, 3000],
+    translateY: [1500, -1000],
+    scale: [70, 10, "easeOutCubic"],
+    opacity: [1, 0.3],
+  });
 
   const [quote, setQuote] = useState(quotes[0]);
 
@@ -120,6 +142,28 @@ const About: React.FC<Props> = ({
           </Grid>
           <Grid gutter="xl">{renderSkills()}</Grid>
         </Grid.Col>
+        <div
+          ref={cloud.ref}
+          style={{
+            height: 50,
+            width: 100,
+            position: "absolute",
+            display: smMedia ? "block" : "none",
+          }}
+        >
+          <Image src="/cloud.png" alt="cloud" width={100} height={50} />
+        </div>
+        <div
+          ref={cloud2.ref}
+          style={{
+            height: 50,
+            width: 100,
+            position: "absolute",
+            display: smMedia ? "block" : "none",
+          }}
+        >
+          <Image src="/cloud.png" alt="cloud" width={100} height={50} />
+        </div>
       </Grid>
     </Container>
   );
