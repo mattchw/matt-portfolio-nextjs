@@ -100,7 +100,7 @@ const About: React.FC<Props> = ({
         x: 0,
         transition: {
           ease: "easeOut",
-          duration: 2, // Control the speed of the animation
+          duration: 1, // Control the speed of the animation
         },
       });
       animationRight.start({
@@ -108,7 +108,7 @@ const About: React.FC<Props> = ({
         x: 0,
         transition: {
           ease: "easeOut",
-          duration: 2, // Control the speed of the animation
+          duration: 1, // Control the speed of the animation
         },
       });
     }
