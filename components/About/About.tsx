@@ -69,7 +69,7 @@ const About: React.FC<Props> = ({
     easing: "easeOutQuad",
     translateX: [0, 3000],
     translateY: [1500, -1000],
-    scale: [70, 10, "easeOutCubic"],
+    scale: [40, 10, "easeOutCubic"],
     opacity: [1, 0.3],
   });
 
@@ -151,7 +151,7 @@ const About: React.FC<Props> = ({
             display: smMedia ? "block" : "none",
           }}
         >
-          <Image src="/cloud.png" alt="cloud" width={100} height={50} />
+          <Image src="/cloud.png" alt="cloud" width={1000} height={400} />
         </div>
         <div
           ref={cloud2.ref}
@@ -162,7 +162,7 @@ const About: React.FC<Props> = ({
             display: smMedia ? "block" : "none",
           }}
         >
-          <Image src="/cloud.png" alt="cloud" width={100} height={50} />
+          <Image src="/cloud.png" alt="cloud" width={1000} height={500} />
         </div>
       </Grid>
     </Container>

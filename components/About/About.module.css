@@ -1,7 +1,9 @@
 .about {
   overflow: hidden;
   min-height: 100vh;
-  /* make all the content inside vertical center */
+
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 .aboutContainer {
