@@ -1,5 +1,14 @@
+.resume {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
 .resumeContainer {
-  margin: 0 auto;
   padding-top: 50px;
   padding-bottom: 50px;
 }

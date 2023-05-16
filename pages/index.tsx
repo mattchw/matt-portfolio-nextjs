@@ -1,18 +1,22 @@
 import { ActionIcon, useMantineColorScheme } from "@mantine/core";
 import { IconSun, IconMoonStars } from "@tabler/icons";
 import type { NextPage } from "next";
-import { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Banner from "../components/Banner/Banner";
 import About from "../components/About/About";
 import Resume from "../components/Resume/Resume";
 import Project from "../components/Project/Project";
 import Blog from "../components/Blog/Blog";
 import Contact from "../components/Contact/Contact";
+import Footer from "../components/Footer/Footer";
 
 const Home: NextPage = () => {
   const [data, setData] = useState([]);
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const dark = colorScheme === "dark";
+
+  const [visibleSection, setVisibleSection] = useState<string>();
+  const [sectionRefs, setSectionRefs] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,8 +36,57 @@ const Home: NextPage = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    console.log("visibleSection", visibleSection);
+  }, [visibleSection]);
+
+  const handleVisibilityChange = useCallback(
+    (sectionId: string, isVisible: boolean) => {
+      if (isVisible) {
+        setVisibleSection(sectionId);
+      } else if (visibleSection === sectionId) {
+        setVisibleSection(undefined);
+      }
+    },
+    [visibleSection]
+  );
+
+  const addSectionRef = useCallback(
+    (id: string, ref: React.MutableRefObject<any>) => {
+      setSectionRefs((prevRefs: any) => {
+        // Ensure the ref is not already in the array
+        if (!prevRefs.some((r: any) => r.id === id)) {
+          return [...prevRefs, { id, ref }];
+        }
+        return prevRefs;
+      });
+    },
+    []
+  );
+
+  const scrollTo = (ele: any) => {
+    ele.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <>
+      <div className={`sticky ${visibleSection ? "show" : "hide"}`}>
+        {sectionRefs.map((sectionRef: any, index) => (
+          <button
+            key={index}
+            type="button"
+            className={`headerLink
+            ${visibleSection === sectionRef.id ? "active" : ""}
+          `}
+            onClick={() => scrollTo(sectionRef.ref.current)}
+          >
+            {sectionRef.id}
+          </button>
+        ))}
+      </div>
       <ActionIcon
         variant="light"
         color={dark ? "yellow" : "blue"}
@@ -51,6 +104,7 @@ const Home: NextPage = () => {
       </ActionIcon>
       <Banner />
       <About
+        id="About"
         data={{
           title: "Software Engineer 🧑‍💻",
           location: "United Kingdom 🇬🇧 / Hong Kong 🇭🇰",
@@ -66,8 +120,11 @@ const Home: NextPage = () => {
           ],
           hobbies: ["Drawing 🎨", "Guitar 🎸", "Reading 📚", "Gaming 🎮"],
         }}
+        addSectionRef={addSectionRef}
+        onVisibilityChange={handleVisibilityChange}
       />
       <Resume
+        id="Resume"
         data={{
           work: [
             {
@@ -149,8 +206,11 @@ const Home: NextPage = () => {
             },
           ],
         }}
+        addSectionRef={addSectionRef}
+        onVisibilityChange={handleVisibilityChange}
       />
       <Project
+        id="Project"
         projects={[
           {
             name: "M.A.D. Matt",
@@ -269,9 +329,17 @@ const Home: NextPage = () => {
             ],
           },
         ]}
+        addSectionRef={addSectionRef}
+        onVisibilityChange={handleVisibilityChange}
       />
-      <Blog posts={data} />
+      <Blog
+        id="Blog"
+        posts={data}
+        addSectionRef={addSectionRef}
+        onVisibilityChange={handleVisibilityChange}
+      />
       <Contact
+        id="Contact"
         info={{
           name: "Matt Wong",
           location: "United Kingdom",
@@ -288,7 +356,10 @@ const Home: NextPage = () => {
             url: "https://linkedin.com/in/mattchw",
           },
         ]}
+        addSectionRef={addSectionRef}
+        onVisibilityChange={handleVisibilityChange}
       />
+      <Footer />
     </>
   );
 };

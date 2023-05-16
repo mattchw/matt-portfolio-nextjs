@@ -15,11 +15,19 @@ import { Work, Education } from "../../interfaces";
 import styles from "./Resume.module.css";
 import { IconBriefcase, IconSchool } from "@tabler/icons";
 
+import { useInView } from "../../hooks/useInView";
+import { useEffect } from "react";
+
+import { motion, useAnimation } from "framer-motion";
+
 export interface Props {
+  id: string;
   data: {
     work: Work[];
     education: Education[];
   };
+  addSectionRef: (id: string, ref: React.MutableRefObject<any>) => void;
+  onVisibilityChange: (id: string, visible: boolean) => void;
 }
 
 const useStyles = createStyles((theme) => ({
@@ -62,11 +70,45 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const Resume: React.FC<Props> = ({ data: { work, education } }) => {
+const Resume: React.FC<Props> = ({
+  id,
+  data: { work, education },
+  addSectionRef,
+  onVisibilityChange,
+}) => {
+  const { ref, visible } = useInView();
+  const animation = useAnimation();
   const { classes } = useStyles();
   const smMedia = useMediaQuery(
     `(min-width: ${useMantineTheme().breakpoints.sm}px)`
   );
+
+  useEffect(() => {
+    if (ref.current) {
+      addSectionRef(id, ref);
+    }
+  }, [ref, addSectionRef, id]);
+
+  useEffect(() => {
+    onVisibilityChange(id, visible);
+  }, [visible, onVisibilityChange, id]);
+
+  useEffect(() => {
+    if (visible) {
+      animation.start({
+        scale: 1,
+        transition: {
+          type: "spring",
+          stiffness: 100,
+          damping: 8,
+        },
+      });
+    }
+    if (!visible) {
+      animation.start({ scale: 0 });
+    }
+  }, [visible, animation]);
+
   const renderWork = () => {
     return (
       <Accordion variant="contained" defaultValue="work" classNames={classes}>
@@ -141,7 +183,7 @@ const Resume: React.FC<Props> = ({ data: { work, education } }) => {
     );
   };
   return (
-    <Container size="xl" px="xs" className={styles.about}>
+    <Container size="xl" px="xs" className={styles.resume} ref={ref}>
       <Grid justify="center" className={styles.resumeContainer}>
         <Grid.Col xs={12} sm={3}>
           <Grid className={styles.resumeLeft}>
@@ -156,7 +198,9 @@ const Resume: React.FC<Props> = ({ data: { work, education } }) => {
           </Grid>
         </Grid.Col>
         <Grid.Col xs={12} sm={9}>
-          {renderWork()}
+          <motion.div ref={ref} animate={animation}>
+            {renderWork()}
+          </motion.div>
         </Grid.Col>
       </Grid>
       <Grid justify="center" className={styles.resumeContainer}>
@@ -173,7 +217,9 @@ const Resume: React.FC<Props> = ({ data: { work, education } }) => {
           </Grid>
         </Grid.Col>
         <Grid.Col xs={12} sm={9}>
-          {renderEducation()}
+          <motion.div ref={ref} animate={animation}>
+            {renderEducation()}
+          </motion.div>
         </Grid.Col>
       </Grid>
     </Container>
