@@ -17,7 +17,6 @@ import { useInView } from "../../hooks/useInView";
 import VsDark from "prism-react-renderer/themes/vsDark";
 import VsLight from "prism-react-renderer/themes/vsLight";
 import React from "react";
-import { useParallax } from "react-scroll-parallax";
 import { useMediaQuery } from "@mantine/hooks";
 
 import { motion, useAnimation } from "framer-motion";
@@ -60,22 +59,6 @@ const About: React.FC<Props> = ({
   ],
 }
   `;
-
-  const cloud = useParallax<HTMLDivElement>({
-    easing: "easeOutQuad",
-    translateX: [0, -3000],
-    translateY: [1000, -2000],
-    scale: [30, 10, "easeOutCubic"],
-    opacity: [1, 0],
-  });
-
-  const cloud2 = useParallax<HTMLDivElement>({
-    easing: "easeOutQuad",
-    translateX: [0, 3000],
-    translateY: [1500, -1000],
-    scale: [40, 10, "easeOutCubic"],
-    opacity: [1, 0.3],
-  });
 
   const [quote, setQuote] = useState(quotes[0]);
 
@@ -180,28 +163,6 @@ const About: React.FC<Props> = ({
             <Grid gutter="xl">{renderSkills()}</Grid>
           </motion.div>
         </Grid.Col>
-        <div
-          ref={cloud.ref}
-          style={{
-            height: 50,
-            width: 100,
-            position: "absolute",
-            display: smMedia ? "block" : "none",
-          }}
-        >
-          <Image src="/cloud.png" alt="cloud" width={1000} height={400} />
-        </div>
-        <div
-          ref={cloud2.ref}
-          style={{
-            height: 50,
-            width: 100,
-            position: "absolute",
-            display: smMedia ? "block" : "none",
-          }}
-        >
-          <Image src="/cloud.png" alt="cloud" width={1000} height={500} />
-        </div>
       </Grid>
     </Container>
   );
