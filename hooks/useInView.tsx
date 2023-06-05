@@ -10,7 +10,7 @@ export function useInView() {
         setVisible(entry.isIntersecting);
       },
       // Set the thresholds for the observer
-      { threshold: 0 }
+      { threshold: 0.5 }
     );
 
     if (ref.current) {
