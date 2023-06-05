@@ -17,7 +17,6 @@ import { useInView } from "../../hooks/useInView";
 import VsDark from "prism-react-renderer/themes/vsDark";
 import VsLight from "prism-react-renderer/themes/vsLight";
 import React from "react";
-import { useMediaQuery } from "@mantine/hooks";
 
 import { motion, useAnimation } from "framer-motion";
 
@@ -44,10 +43,6 @@ const About: React.FC<Props> = ({
   const { ref, visible } = useInView();
   const animationLeft = useAnimation();
   const animationRight = useAnimation();
-
-  const smMedia = useMediaQuery(
-    `(min-width: ${useMantineTheme().breakpoints.sm}px)`
-  );
 
   const demoCode = `
 {
@@ -113,9 +108,9 @@ const About: React.FC<Props> = ({
     ));
   };
   return (
-    <Container size="xl" px="xs" className={styles.about} ref={ref}>
+    <Container size="xl" px="lg" className={styles.about} ref={ref}>
       <Grid justify="center" align="center" className={styles.aboutContainer}>
-        <Grid.Col md={12} lg={4}>
+        <Grid.Col md={12} lg={3}>
           <motion.div ref={ref} animate={animationLeft}>
             <div className={styles.aboutImgCircle}>
               <Image
@@ -128,7 +123,7 @@ const About: React.FC<Props> = ({
             </div>
           </motion.div>
         </Grid.Col>
-        <Grid.Col md={12} lg={8}>
+        <Grid.Col md={12} lg={9}>
           <motion.div ref={ref} animate={animationRight}>
             <Grid
               justify="center"

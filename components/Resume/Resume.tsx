@@ -8,7 +8,6 @@ import {
   Avatar,
   Group,
   createStyles,
-  useMantineTheme,
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { Work, Education } from "../../interfaces";
@@ -79,9 +78,7 @@ const Resume: React.FC<Props> = ({
   const { ref, visible } = useInView();
   const animation = useAnimation();
   const { classes } = useStyles();
-  const smMedia = useMediaQuery(
-    `(min-width: ${useMantineTheme().breakpoints.sm}px)`
-  );
+  const smMedia = useMediaQuery(`(min-width: 720px)`);
 
   useEffect(() => {
     if (ref.current) {
@@ -183,7 +180,7 @@ const Resume: React.FC<Props> = ({
     );
   };
   return (
-    <Container size="xl" px="xs" className={styles.resume} ref={ref}>
+    <Container size="xl" px="xl" className={styles.resume} ref={ref}>
       <Grid justify="center" className={styles.resumeContainer}>
         <Grid.Col xs={12} sm={3}>
           <Grid className={styles.resumeLeft}>

@@ -5,12 +5,17 @@ export function useInView() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    let threshold = 0.5;
+
+    if (window.innerHeight < 900) {
+      threshold = 0.3;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setVisible(entry.isIntersecting);
       },
-      // Set the thresholds for the observer
-      { threshold: 0 }
+      { threshold }
     );
 
     if (ref.current) {

@@ -8,6 +8,8 @@ import {
   Badge,
   createStyles,
   Group,
+  rem,
+  getStylesRef,
 } from "@mantine/core";
 import Autoplay from "embla-carousel-autoplay";
 import styles from "./Project.module.css";
@@ -37,11 +39,11 @@ const Project: React.FC<Props> = ({
   const animation = useAnimation();
   const useStyles = createStyles((theme, _params, getRef) => ({
     card: {
-      height: 500,
+      height: rem(500),
     },
 
     controls: {
-      ref: getRef("controls"),
+      ref: getStylesRef("controls"),
       transition: "opacity 150ms ease",
       opacity: 0.3,
     },
@@ -53,12 +55,12 @@ const Project: React.FC<Props> = ({
     },
 
     slide: {
-      height: 540,
+      height: rem(540),
     },
 
     root: {
       "&:hover": {
-        [`& .${getRef("controls")}`]: {
+        [`& .${getStylesRef("controls")}`]: {
           opacity: 1,
         },
       },
@@ -160,7 +162,7 @@ const Project: React.FC<Props> = ({
   };
 
   return (
-    <Container size="xl" px="xs" className={styles.project} ref={ref}>
+    <Container size="xl" px="lg" className={styles.project} ref={ref}>
       <Grid justify="center" align="center">
         <Grid className={styles.projectHeading}>
           <h2>My Works</h2>

@@ -2,7 +2,7 @@ import { Container, Divider, Grid } from "@mantine/core";
 import styles from "./Footer.module.css";
 const Footer: React.FC<{}> = () => {
   return (
-    <Container size="xl" px="xs" className={styles.contact}>
+    <Container size="xl" px="lg" className={styles.contact}>
       <div
         style={{ paddingTop: 40, display: "flex", justifyContent: "center" }}
       >

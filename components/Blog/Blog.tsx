@@ -33,6 +33,12 @@ const Blog: React.FC<Props> = ({
   const [postNum, setPostNum] = useState(6);
 
   useEffect(() => {
+    if (window.innerWidth < 768) {
+      setPostNum(4);
+    } else {
+      setPostNum(6);
+    }
+
     const handleResize = () => {
       if (window.innerWidth < 768) {
         setPostNum(4);
@@ -73,6 +79,7 @@ const Blog: React.FC<Props> = ({
   }, [visible, animation]);
 
   const renderPosts = () => {
+    console.log(postNum);
     return posts.slice(0, postNum).map((post, i) => {
       return (
         <Grid.Col sm={6} md={4} key={post.title} style={{ padding: 10 }}>
@@ -109,7 +116,7 @@ const Blog: React.FC<Props> = ({
     });
   };
   return (
-    <Container size="xl" px="xs" className={styles.blog} ref={ref}>
+    <Container size="xl" px="lg" className={styles.blog} ref={ref}>
       <Grid justify="center" align="center">
         <Grid className={styles.blogHeading}>
           <h2>My Latest Blogs</h2>
