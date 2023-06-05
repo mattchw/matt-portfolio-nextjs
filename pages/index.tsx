@@ -42,6 +42,8 @@ const Home: NextPage = () => {
 
   const handleVisibilityChange = useCallback(
     (sectionId: string, isVisible: boolean) => {
+      // check if scrolling stops
+
       if (isVisible) {
         setVisibleSection(sectionId);
       } else if (visibleSection === sectionId) {

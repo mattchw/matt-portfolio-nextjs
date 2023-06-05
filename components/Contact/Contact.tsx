@@ -1,12 +1,4 @@
-import {
-  Button,
-  Container,
-  Divider,
-  Grid,
-  Text,
-  Textarea,
-  TextInput,
-} from "@mantine/core";
+import { Button, Container, Grid, Textarea, TextInput } from "@mantine/core";
 import { useEffect, useState } from "react";
 import styles from "./Contact.module.css";
 import { showNotification } from "@mantine/notifications";
@@ -147,7 +139,7 @@ const Contact: React.FC<Props> = ({
     e.preventDefault();
   };
   return (
-    <Container size="xl" px="xs" className={styles.contact} ref={ref}>
+    <Container size="xl" px="lg" className={styles.contact} ref={ref}>
       <Grid justify="center" align="center" className={styles.contactHeading}>
         <h2>Contact</h2>
       </Grid>

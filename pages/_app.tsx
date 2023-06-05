@@ -5,7 +5,6 @@ import {
   ColorSchemeProvider,
   ColorScheme,
 } from "@mantine/core";
-import { NotificationsProvider } from "@mantine/notifications";
 import { ParallaxProvider } from "react-scroll-parallax";
 import "../styles/globals.css";
 import { useEffect, useState } from "react";
@@ -88,7 +87,7 @@ export default function App(props: AppProps) {
                     sm: 720,
                     md: 960,
                     lg: 1140,
-                    xl: 1320,
+                    xl: 1860,
                   },
                 },
               },
@@ -96,11 +95,9 @@ export default function App(props: AppProps) {
             colorScheme,
           }}
         >
-          <NotificationsProvider>
-            <ParallaxProvider>
-              <Component {...pageProps} />
-            </ParallaxProvider>
-          </NotificationsProvider>
+          <ParallaxProvider>
+            <Component {...pageProps} />
+          </ParallaxProvider>
         </MantineProvider>
       </ColorSchemeProvider>
     </>

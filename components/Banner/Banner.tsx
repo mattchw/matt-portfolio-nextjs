@@ -17,29 +17,29 @@ const Banner: React.FC<{}> = () => {
       fontSize: 60,
       lineHeight: 0.5,
 
-      [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+      [theme.fn.smallerThan("md")]: {
         fontSize: 50,
       },
 
-      [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+      [theme.fn.smallerThan("sm")]: {
         fontSize: 40,
       },
 
-      [`@media (max-width: ${theme.breakpoints.xs}px)`]: {
+      [theme.fn.smallerThan("xs")]: {
         fontSize: 30,
       },
     },
     subHeadlineFont: {
       fontSize: 16,
-      [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+      [theme.fn.smallerThan("md")]: {
         fontSize: 14,
       },
 
-      [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+      [theme.fn.smallerThan("sm")]: {
         fontSize: 12,
       },
 
-      [`@media (max-width: ${theme.breakpoints.xs}px)`]: {
+      [theme.fn.smallerThan("xs")]: {
         fontSize: 8,
       },
     },
