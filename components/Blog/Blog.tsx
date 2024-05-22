@@ -79,14 +79,20 @@ const Blog: React.FC<Props> = ({
   }, [visible, animation]);
 
   const renderPosts = () => {
-    console.log(postNum);
     return posts.slice(0, postNum).map((post, i) => {
       return (
         <Grid.Col sm={6} md={4} key={post.title} style={{ padding: 10 }}>
           <motion.div custom={i} animate={animation} key={i}>
             <Card shadow="sm" p="lg" radius="md" withBorder>
               <Card.Section component="a" href={post.link} target="_blank">
-                <Image src={post.thumbnail} height={200} alt={post.title} />
+                <Image
+                  src={
+                    (post.description.match(/<img[^>]+src="([^">]+)"/) ||
+                      [])[1] || ""
+                  }
+                  height={200}
+                  alt={post.title}
+                />
               </Card.Section>
 
               <Group position="apart" mt="md" mb="xs">
