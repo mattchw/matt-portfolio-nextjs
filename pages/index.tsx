@@ -36,10 +36,6 @@ const Home: NextPage = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log("visibleSection", visibleSection);
-  }, [visibleSection]);
-
   const handleVisibilityChange = useCallback(
     (sectionId: string, isVisible: boolean) => {
       // check if scrolling stops

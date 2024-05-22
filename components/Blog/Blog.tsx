@@ -79,7 +79,6 @@ const Blog: React.FC<Props> = ({
   }, [visible, animation]);
 
   const renderPosts = () => {
-    console.log(postNum);
     return posts.slice(0, postNum).map((post, i) => {
       return (
         <Grid.Col sm={6} md={4} key={post.title} style={{ padding: 10 }}>
