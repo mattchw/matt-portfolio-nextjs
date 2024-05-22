@@ -85,7 +85,14 @@ const Blog: React.FC<Props> = ({
           <motion.div custom={i} animate={animation} key={i}>
             <Card shadow="sm" p="lg" radius="md" withBorder>
               <Card.Section component="a" href={post.link} target="_blank">
-                <Image src={post.thumbnail} height={200} alt={post.title} />
+                <Image
+                  src={
+                    (post.description.match(/<img[^>]+src="([^">]+)"/) ||
+                      [])[1] || ""
+                  }
+                  height={200}
+                  alt={post.title}
+                />
               </Card.Section>
 
               <Group position="apart" mt="md" mb="xs">
