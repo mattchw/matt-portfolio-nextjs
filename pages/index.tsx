@@ -342,7 +342,7 @@ const Home: NextPage = () => {
                 color: "blue",
               },
             ],
-          }
+          },
         ]}
         addSectionRef={addSectionRef}
         onVisibilityChange={handleVisibilityChange}
