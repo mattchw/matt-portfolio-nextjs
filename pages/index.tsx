@@ -127,7 +127,7 @@ const Home: NextPage = () => {
           work: [
             {
               company: "Roku",
-              image: "/resume/work/roku.jpeg",
+              image: "/resume/work/roku.png",
               positions: [
                 {
                   title: "Software Engineer",
