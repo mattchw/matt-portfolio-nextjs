@@ -126,6 +126,18 @@ const Home: NextPage = () => {
         data={{
           work: [
             {
+              company: "Roku",
+              image: "/resume/work/roku.jpeg",
+              positions: [
+                {
+                  title: "Software Engineer",
+                  startDate: "July 2023",
+                  endDate: "Present",
+                  description: [],
+                },
+              ],
+            },
+            {
               company: "SHOPLINE",
               image: "/resume/work/shopline.jpeg",
               positions: [
@@ -210,6 +222,28 @@ const Home: NextPage = () => {
       <Project
         id="Project"
         projects={[
+          {
+            name: "Youtube AI",
+            description:
+              "API for downloading, transcribing, and summarizing YouTube videos using NestJS, OpenAI Whisper, and GPT-4",
+            url: "",
+            github: "https://github.com/mattchw/nestjs-youtube-ai",
+            image: "YoutubeAI.png",
+            tags: [
+              {
+                name: "Typescript",
+                color: "blue",
+              },
+              {
+                name: "NestJS",
+                color: "red",
+              },
+              {
+                name: "OpenAI",
+                color: "teal",
+              },
+            ],
+          },
           {
             name: "M.A.D. Matt",
             description:
@@ -308,24 +342,7 @@ const Home: NextPage = () => {
                 color: "blue",
               },
             ],
-          },
-          {
-            name: "Buy2Play",
-            description:
-              "Nodejs with Express.js Web app for second-hand game trading",
-            image: "Buy2Play.png",
-            github: "https://github.com/mattchw/buy2play",
-            tags: [
-              {
-                name: "Express",
-                color: "blue",
-              },
-              {
-                name: "MySQL",
-                color: "blue",
-              },
-            ],
-          },
+          }
         ]}
         addSectionRef={addSectionRef}
         onVisibilityChange={handleVisibilityChange}
