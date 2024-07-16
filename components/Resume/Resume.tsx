@@ -93,6 +93,7 @@ const Resume: React.FC<Props> = ({
   useEffect(() => {
     if (visible) {
       animation.start({
+        opacity: 1,
         scale: 1,
         transition: {
           type: "spring",
@@ -100,9 +101,8 @@ const Resume: React.FC<Props> = ({
           damping: 8,
         },
       });
-    }
-    if (!visible) {
-      animation.start({ scale: 0 });
+    } else {
+      animation.start({ opacity: 0, scale: 0.9 });
     }
   }, [visible, animation]);
 
