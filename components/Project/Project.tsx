@@ -100,8 +100,7 @@ const Project: React.FC<Props> = ({
           duration: 2,
         },
       });
-    }
-    if (!visible) {
+    } else {
       animation.start({ scale: 0.8, opacity: 0 });
     }
   }, [visible, animation]);
@@ -170,10 +169,13 @@ const Project: React.FC<Props> = ({
       </Grid>
       <motion.div ref={ref} animate={animation}>
         <Carousel
-          slideSize="60%"
+          slideSize="80%"
           breakpoints={[
+            { maxWidth: "xl", slideSize: "80%" },
+            { maxWidth: "lg", slideSize: "80%" },
             { maxWidth: "md", slideSize: "80%" },
-            { maxWidth: "sm", slideSize: "100%" },
+            { maxWidth: "sm", slideSize: "90%" },
+            { maxWidth: "xs", slideSize: "100%" },
           ]}
           slideGap="sm"
           align="center"

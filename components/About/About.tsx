@@ -78,7 +78,7 @@ const About: React.FC<Props> = ({
         x: 0,
         transition: {
           ease: "easeOut",
-          duration: 1, // Control the speed of the animation
+          duration: 0.5, // Control the speed of the animation
         },
       });
       animationRight.start({
@@ -86,11 +86,10 @@ const About: React.FC<Props> = ({
         x: 0,
         transition: {
           ease: "easeOut",
-          duration: 1, // Control the speed of the animation
+          duration: 0.5, // Control the speed of the animation
         },
       });
-    }
-    if (!visible) {
+    } else {
       animationLeft.start({ opacity: 0, x: -200 });
       animationRight.start({ opacity: 0, x: 200 });
     }

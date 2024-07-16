@@ -56,6 +56,7 @@ const Contact: React.FC<Props> = ({
   useEffect(() => {
     if (visible) {
       animation.start({
+        opacity: 1,
         rotateY: 360,
         transition: {
           duration: 1, // Control the speed of the flip animation
@@ -70,7 +71,8 @@ const Contact: React.FC<Props> = ({
       });
     } else {
       animation.start({
-        rotateY: 0,
+        opacity: 0,
+        rotateY: 180,
       });
       animationAppear.start({
         opacity: 0,

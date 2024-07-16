@@ -107,7 +107,7 @@ const Home: NextPage = () => {
           title: "Software Engineer 🧑‍💻",
           location: "United Kingdom 🇬🇧 / Hong Kong 🇭🇰",
           description:
-            "Having worked at both frontend and backend positions for 3 years, I am a self-driven fast learner with in-depth skills and expertise in designing, planning, developing and maintenance of software.",
+            "Having worked at both frontend and backend positions for 4+ years, I am a self-driven fast learner with in-depth skills and expertise in designing, planning, developing and maintenance of software.",
           skills: [
             "Html",
             "Css",
@@ -185,22 +185,6 @@ const Home: NextPage = () => {
                 },
               ],
             },
-            {
-              company: "Zensis Limited",
-              image: "/resume/work/zensis.png",
-              positions: [
-                {
-                  title: "Backend Developer",
-                  startDate: "June 2020",
-                  endDate: "September 2020",
-                  description: [
-                    "Rebuilt the brokerage management system for one of the largest, listed real estate broker in Hong Kong by Node.js, Oracle Database, Redis",
-                    "Performed load testing to improve and increase frequently used APIs' performance by 50%",
-                    "Maintained and supported daily issues of SMPP applications",
-                  ],
-                },
-              ],
-            },
           ],
           education: [
             {
@@ -252,10 +236,6 @@ const Home: NextPage = () => {
             github: "https://github.com/mattchw/mad-matt-ai",
             image: "MadMatt.png",
             tags: [
-              {
-                name: "Typescript",
-                color: "blue",
-              },
               {
                 name: "Next.js",
                 color: "gray",
